@@ -2,3 +2,5 @@
 Projeto Integrador do curso Programador de Sistemas, do SENAC Castanhal
 
 [Bianca](https://github.com/Klaay001/)
+[Alana](https://github.com/Alana691)
+[NOILIUG](https://github.com/NOILIUG)
