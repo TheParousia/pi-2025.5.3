@@ -1,144 +1,197 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <style>
     body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        background-color: rgb(101, 100, 86);
+        font-family: Arial, sans-serif;
+    }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
+    .parent {
+        text-align: center;
+        background-color: rgb(51, 51, 35);
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        gap: 8px;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+    }
 
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+    .header {
+        text-align: center;
+        grid-column: span 7 / span 7;
+        grid-row: span 2 / span 2;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .header h1 {
+        background-image: url('/static/imagem/integrantes/ecommerce-arrow.jpg');
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: #fff;
+    }
 
-header nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
+    .nav {
+        background-color: rgb(58, 57, 48);
+        grid-column: span 7 / span 7;
+        grid-row-start: 3;
+        padding: 20px;
+        text-align: center;
+    }
 
-header nav a {
-    color: #fff;
-    text-decoration: none;
-}
+    .nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
+    .nav li {
+        display: inline-block;
+        margin-right: 20px;
+    }
 
-section {
-    background-color: #f7f7f7;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    .nav a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
 
-h1, h2 {
-    color: #333;
-}
+    .nav a:hover {
+        color: #ccc;
+    }
 
-p {
-    color: #666;
-}
+    .aside {
+        background-color: rgb(101, 100, 86);
+        grid-column: span 2 / span 2;
+        grid-row: span 6 / span 6;
+        grid-row-start: 4;
+        padding: 20px;
+    }
 
-img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
+    .aside h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
 
-timeline {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+    .aside ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-timeline li {
-    margin-bottom: 20px;
-}
+    .aside li {
+        margin-bottom: 20px;
+    }
 
-timeline span {
-    font-weight: bold;
-    color: #333;
-}
+    .aside img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    clear: both;
-}
+    .main {
+        background-color: rgb(61, 61, 55);
+        grid-column: span 5 / span 5;
+        grid-row: span 6 / span 6;
+        grid-column-start: 3;
+        grid-row-start: 4;
+        padding: 20px;
+    }
+
+    .main h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .main p {
+        margin-bottom: 20px;
+    }
+
+    .main img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        background-color: rgb(51, 51, 35);
+        grid-column: span 7 / span 7;
+        grid-row-start: 10;
+        padding: 20px;
+        text-align: center;
+        clear: both;
+    }
+
+    .footer p {
+        color: #fff;
+        margin-bottom: 10px;
+    }
 </style>
+
 <body>
-    <header>
-        <nav>
+    <div class="parent">
+        <header class="headr">
+            <!-- Cabeçalho com título e logo -->
+            <h1>Projeto Integrador <br>pi-25.5.3</h1>
+        </header>
+
+        <nav class="nav">
+            <!-- Navegação com links para outras páginas -->
             <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="#">Contato</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
-        <section class="sobre-nos">
-            <h1>Sobre Nós</h1>
-            <p>Somos uma equipe de profissionais apaixonados por inovação e tecnologia. Nossa missão é criar soluções que melhorem a vida das pessoas.</p>
-            <img src="/static/portalitshow_an_IT_executive_talking_to_his_team_-ar_169_-v_f87eedc4-d4ce-4074-8977-f3a0265d95fb_1 (1).png" alt="Equipe">
-        </section>
-        <section class="nossa-historia">
-            <h2>Nossa História</h2>
-            <p>Fundada em 2010, nossa empresa começou como um pequeno projeto de dois amigos. Hoje, somos uma equipe de mais de 50 pessoas, trabalhando juntas para criar soluções inovadoras.</p>
-            <timeline>
-                <li>
-                    <span>2010</span>
-                    <p>Fundação da empresa</p>
-                </li>
-                <li>
-                    <span>2012</span>
-                    <p>Lançamento do primeiro produto</p>
-                </li>
-                <li>
-                    <span>2015</span>
-                    <p>Expansão para novos mercados</p>
-                </li>
-            </timeline>
-        </section>
-        <section class="equipe">
+
+        <aside class="aside">
+            <!-- Barra lateral com informações adicionais -->
             <h2>Equipe</h2>
             <ul>
                 <li>
-                    <img src="imagem-john.jpg" alt="John">
-                    <h3>John Doe</h3>
-                    <p>CEO e Fundador</p>
+                    <img src="/static/imagem/integrantes/perfil sem foto.jpg" alt="Aluno 1">
+                    <p>Ana - "Frase motivacional do aluno 1"</p>
                 </li>
                 <li>
-                    <img src="imagem-jane.jpg" alt="Jane">
-                    <h3>Jane Doe</h3>
-                    <p>CTO e Co-Fundadora</p>
+                    <img src="/static/imagem/integrantes/chrome_SeM4qxnuXl.png" alt="Aluno 2">
+                    <p>Henrique - "Frase motivacional do aluno 2"</p>
                 </li>
+                <!-- Adicionar mais alunos aqui -->
             </ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Nossa Empresa. Todos os direitos reservados.</p>
-    </footer>
+        </aside>
+
+        <main class="main">
+            <!-- Conteúdo principal da página -->
+            <h2>Construção do Projeto</h2>
+            <p>Nossa equipe de 12 alunos trabalhou arduamente para criar este programa de e-commerce.</p>
+            <img src="/static/imagem/integrantes/equipe.jpg" alt="Equipe trabalhando">
+            <h2>Tecnologias Utilizadas</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Python</li>
+                <li>Django</li>
+                <li>MySQL</li>
+            </ul>
+        </main>
+
+        <footer class="footer">
+            <!-- Rodapé com informações de contato e direitos autorais -->
+            <p>&copy; 2025 Equipe de Desenvolvimento</p>
+        </footer>
+    </div>
+
 </body>
+
 </html>
