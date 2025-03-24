@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Pagina de Login</title>
 </head>
+<style>
+.container-login{
+   display: flex;
+   flex-wrap: wrap;
+   
+}
+
+
+</style>
 <body>
-   <form action="" method="post">
-<label for="email">email</label>
-<input type="text" id="email" name="email"><br><br>
+   <div class="container-login">
+      <h2>Login</h2>
+      <form action="" method="post">
+         <div class="input-usuario">
+            <label for="usuario">Nome de Usuário:</label>
+            <input type="text" id="email" name="email" required>
+            <br><br>
+         </div>
+         <div class="input-senha">
+            <label for="password">Senha:</label>
+            <input type="text" id="senha" name="senha" required>
+         </div>
+         <br><br>
+         <input type="submit" value="login">
 
-<label>
-
-   </form> 
+      </form>
+   </div>
 </body>
+
 </html>
