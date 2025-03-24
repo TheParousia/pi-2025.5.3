@@ -4,7 +4,3 @@ from .models import Produto
 def listaProdutos(request):
     produtos = Produto.objects.all()
     return render(request, 'listagem_produto.html', {'produtos': produtos})
-
-def listagemProduto(request):
-    
-    return render(request, 'listagem_produto.html')

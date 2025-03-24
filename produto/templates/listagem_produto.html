@@ -5,26 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de produtos</title>
     <style>
-        .busca-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        .campo-busca {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 24px;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .campo-busca:focus {
-            border-color: #007bff;
-        }
-
         .container-menu {
             max-width: 1200px;
             margin: 20px auto;
@@ -37,64 +17,67 @@
         .card {
             width: 300px;
             margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border: 1px solid #0b07ee;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-        }
+            color: #fff;
+            padding: 20px;
+            background-color: #4cafa7;
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
         }
         
+        .card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            background-size: cover;
+            background-color: rgb(192, 192, 192);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .produto-titulo {
+            font-size: 25px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .produto-descricao {
+            font-size: 16px;
+            margin: 10px 0;
+            text-align: center;
             
-        .campo-busca {
-            padding: 8px;
+        }
+
+        .produto-preco {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .quantidade-estoque {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
         }
     </style>
+
 </head>
-
 <body>
-    <div class="busca-container">
-        <input type="text" id="pesquisaProdutos" class="campo-busca" placeholder="Pesquisar produtos...">
-    </div>
-
     <div class="container-menu">
         {%for produto in produtos%}
             <div class="card">
                 <img width="100px" src="{{produto.imagem.url}}" alt="{{produto.nome}}">
-                <h2 >{{produto.nome}}</h2>
-                <p>{{produto.descricao}}</p>
-                <p>{{produto.preco}}</p>
-                <p>{{produto.quantidade_estoque}}</p>
+                <h2 class="produto-titulo">{{produto.nome}}</h2>
+                <p class="produto-descricao">{{produto.descricao}}</p>
+                <p class="produto-preco">{{produto.preco}}</p>
+                <p class="quantidade-estoque">{{produto.quantidade_estoque}}</p>
             </div>
         {%endfor%}
     </div>
 
-    <script>
-        const campoBusca = document.getElementById('pesquisaProdutos');
-        const produtos = document.querySelectorAll('.produto-item');
-
-        campoBusca.addEventListener('input', function() {
-            const valorBusca = this.value.toLowerCase();
-            
-            produtos.forEach(produto => {
-                const tituloProduto = produto.querySelector('.produto-titulo').textContent.toLowerCase();
-                
-                if (tituloProduto.includes(valorBusca)) {
-                    produto.style.display = 'block';
-                } else {
-                    produto.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
