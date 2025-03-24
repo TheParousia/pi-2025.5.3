@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>cadastro de produtos</title>
+    sty
 </head>
 <body>
-    
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome">
+            <br>
+            <br>
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor">
+        
+            <br>
+            <br>
+        
+            <label for="descrição">descrição:</label>
+        
+            <input type="text" name="descrição">
+            <br>
+            <br>
+        
+            <label for="quantidade em estoque">Quantidade em estoque:</label>
+            <input type="text" name="quantidade_em_estoque" >
+        
+            <br>
+            <br>
+        
+            <label for="imagem">imagem do produto:</label>
+            <input type="file" id="imagem" name = "imagem">
+        
+            <input type="submit"  value="Cadastrar" >
+        
+    </div>
+
+
+
 </body>
 </html>
