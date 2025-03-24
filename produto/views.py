@@ -18,6 +18,9 @@ def cadastroProduto(request):
         produto.imagem = request.FILES.get('imagem')
         produto.preço = valor
         produto.quantidade_estoque = quantidade_em_estoque
+        produto.imagem2 = request.FILES.get('imagem2')
+        produto.imagem3 = request.FILES.get('imagem3')
+        produto.imagem4 = request.FILES.get('imagem4')
 
         produto.save()
     return render(request,'form_produto.html')
