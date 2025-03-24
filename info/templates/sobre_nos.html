@@ -5,193 +5,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Sobre Nós</title>
-    <link rel="stylesheet" href="estilo.css">
 </head>
 <style>
-    body {
-        background-color: rgb(101, 100, 86);
-        font-family: Arial, sans-serif;
-    }
+    @charset "UTF-8";
 
-    .parent {
-        text-align: center;
-        background-color: rgb(51, 51, 35);
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        grid-template-rows: repeat(10, 1fr);
-        gap: 8px;
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 20px;
-    }
+/* importa fonte */
+@font-face {
+  font-family: 'fonte1';
+  src: url(/static/font/FathersDisplayRegular.ttf);
+}
 
-    .header {
-        text-align: center;
-        grid-column: span 7 / span 7;
-        grid-row: span 2 / span 2;
-        padding: 20px;
-        text-align: center;
-    }
-    
-    .header h1 {
-        background-image: url('/static/imagem/integrantes/ecommerce-arrow.jpg');
-        font-size: 36px;
-        margin-bottom: 10px;
-        color: #fff;
-    }
+/* Defina as variáveis CSS */
+:root {
+  --cor-principal: rgba(0, 0, 0, 0.555);
+  --cor-secundaria: rgba(240, 248, 255, 0.11);
+  --cor-terciaria: #999;
 
-    .nav {
-        background-color: rgb(58, 57, 48);
-        grid-column: span 7 / span 7;
-        grid-row-start: 3;
-        padding: 20px;
-        text-align: center;
-    }
+  --fonte-titulo: fonte1;
+  --fonte-principal: Arial, sans-serif;
+}
 
-    .nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
 
-    .nav li {
-        display: inline-block;
-        margin-right: 20px;
-    }
+/* Defina o estilo do corpo da página */
+body {
+  background-image: url('/static/imagem/integrantes/fundo-4.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: var(--fonte-principal);
+}
 
-    .nav a {
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
+a.externo::after {
+  /*usado para todo link externo*/
+  content: '\00a0\1f517';
+}
 
-    .nav a:hover {
-        color: #ccc;
-    }
+/* Defina o estilo do container */
+.container {
+  max-width: auto;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 3px;
+}
 
-    .aside {
-        background-color: rgb(101, 100, 86);
-        grid-column: span 2 / span 2;
-        grid-row: span 6 / span 6;
-        grid-row-start: 4;
-        padding: 20px;
-    }
+/* Defina o estilo do header */
+.header {
+  background-color: var(--cor-principal);     /* cor promaria*/
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px black;
+  grid-column: 1 / -1;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .aside h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
+.header h2{
+  font-family: 'fonte1', sans-serif;
+  font-size: 4em;
+  text-align: left;
+  margin-left: 0px;
+  color: white;
+   text-shadow: 2px 2px 4px #f8b806,
+    -2px -2px 4px #0000FF;
+}
 
-    .aside ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+.header h1 {
+    font-family: 'fonte1', sans-serif;
+    font-size: 8em;
+    text-align: center;
+    color: white;
+    margin: 3px;
+    text-shadow: 2px 2px 4px #f8b806,
+      -2px -2px 4px #0000FF;
+}
 
-    .aside li {
-        margin-bottom: 20px;
-    }
+/* Defina o estilo do nav */
+.nav {
+  background-color: var(--cor-principal);   /*cor primaria*/
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px black;
+  grid-column: 1 / -1;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .aside img {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
+.nav a,
+.footer a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
 
-    .main {
-        background-color: rgb(61, 61, 55);
-        grid-column: span 5 / span 5;
-        grid-row: span 6 / span 6;
-        grid-column-start: 3;
-        grid-row-start: 4;
-        padding: 20px;
-    }
+}
 
-    .main h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
+.nav a:hover {
+  color: yellowgreen;  
+  text-decoration: underline;
+}
 
-    .main p {
-        margin-bottom: 20px;
-    }
+/* Defina o estilo da barra lateral (equipes)*/
+.container-cards {
+  background-color: var(--cor-principal);
+  grid-column: 1;
+  border: 0.5px solid black;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 0px 5px 0px;
+  justify-content: center;
+}
 
-    .main img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        margin-bottom: 20px;
-    }
+.container-cards h2{
+  text-shadow: 2px 2px 4px #ffffff,
+      -2px -2px 4px #ffffff;
+}
 
-    .footer {
-        background-color: rgb(51, 51, 35);
-        grid-column: span 7 / span 7;
-        grid-row-start: 10;
-        padding: 20px;
-        text-align: center;
-        clear: both;
-    }
+.card {
+  width: 200px;
+  border: 2px solid white;
+  background-color: var(--cor-secundaria);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
 
-    .footer p {
-        color: #fff;
-        margin-bottom: 10px;
-    }
+.container-slide {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.paginas-slide {
+  display: inline-block;
+  transition: transform 3s ease-in-out;
+}
+
+.paginas-slide img {
+  border-radius: 50%;
+  width: 200px;
+}
+
+.paginas-slide img {
+  display: inline-block;
+}
+
+.container-slide .paginas-slide {
+  animation: anima 9s linear infinite;
+}
+
+@keyframes anima {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.container-slide:hover .paginas-slide img {
+  display: inline-flex;
+}
+
+/* Defina o estilo do conteúdo principal */
+.main {
+  background-color: var(--cor-principal);     /*cor princial*/
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px black;
+  /* Define a cor de fundo do conteúdo principal */
+  padding: 15px;
+  /* Define o preenchimento do conteúdo principal */
+}
+
+.apresentacao {
+  background-color: var(--cor-principal);
+  box-shadow: 2px 2px 5px black;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.apresentacao #img-reuniao {
+  width: 800px;
+  padding-left: 50px;
+}
+
+.apresentacao a {
+  color: white;
+  text-decoration: none;
+
+}
+
+.apresentacao a:hover {
+  color: yellowgreen;
+  text-decoration: underline;
+
+}
+
+.art-main {
+  background-color: var(--cor-principal);
+  box-shadow: 2px 0px 5px black;
+  border-radius: 5px;
+  padding: 15px;
+  color: white;
+}
+
+.feedback {
+  background-color: var(--cor-principal);
+  box-shadow: 0px 2px 5px black;
+  border-radius: 5px;
+  padding: 15px;
+  color: white;
+  margin-top: 0px;
+}
+
+/* Defina o estilo do rodapé */
+.footer {
+  margin-top: 5px;
+  background-color: var(--cor-principal);
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px black;
+  grid-column: 1 / -1;
+  /* Define a largura do rodapé no grid */
+  /* Define a cor de fundo do rodapé */
+  height: 40px;
+  /* Define a altura do rodapé */
+  display: flex;
+  /* Define o display do rodapé como flex */
+  justify-content: center;
+  /* Define o alinhamento do texto do rodapé */
+  align-items: center;
+  /* Define o alinhamento do texto do rodapé */
+}
+
+.footer p {
+  color: white;
+}
+
+.social img {
+  width: 50px;
+  cursor: pointer;
+}
+
+.social img:hover {
+  transition: rotation 50%;
+}
+
+.nav h2:hover {
+  text-shadow: 1px 3px 5px rgba(152, 18, 179, 0.856);
+}
 </style>
 
 <body>
-    <div class="parent">
-        <header class="headr">
+    <div class="container">
+        <header class="header">
             <!-- Cabeçalho com título e logo -->
-            <h1>Projeto Integrador <br>pi-25.5.3</h1>
+            <h2>Projeto Integrador:   <br> pi-25.5.3</h2> 
+            <br><br> 
+            <h1>E-COMMERCE 'LOJÃO DO 20'</h1>  
         </header>
 
         <nav class="nav">
             <!-- Navegação com links para outras páginas -->
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
+            <div>
+                <a href="{% url 'dev' %}">Desenvolvedores</a>
+                <a href="#">A historia até aqui</a>
+            </div>
         </nav>
 
-        <aside class="aside">
-            <!-- Barra lateral com informações adicionais -->
-            <h2>Equipe</h2>
-            <ul>
-                <li>
-                    <img src="/static/imagem/integrantes/perfil sem foto.jpg" alt="Aluno 1">
-                    <p>Ana - "Frase motivacional do aluno 1"</p>
-                </li>
-                <li>
-                    <img src="/static/imagem/integrantes/chrome_SeM4qxnuXl.png" alt="Aluno 2">
-                    <p>Henrique - "Frase motivacional do aluno 2"</p>
-                </li>
-                <!-- Adicionar mais alunos aqui -->
-            </ul>
+        <aside class="container-cards">
+            <section class="card">
+                <h2>Equipe 1 - Sobre nos</h2>
+                <article class="container-slide">
+                    <div class="paginas-slide">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                        <!-- copia -->
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                        
+                    </div>
+                </article>
+<hr>
+                <h2>Equipe 2 - Menu login</h2>
+                <article class="container-slide">
+                    <div class="paginas-slide">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                        <!-- copia -->
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                    </div>
+                </article>
+                <hr>
+                <h2>Equipe 3 - Cadastro de produtos</h2>
+                <article class="container-slide">
+                    <div class="paginas-slide">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                        <!-- copia -->
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                    </div>
+                </article>
+                <hr>
+                <h2>Equipe 4 - Cadastro de clentes</h2>
+                <article class="container-slide">
+                    <div class="paginas-slide">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                        <!-- copia -->
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 1">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-feminino.png" alt="Foto do Aluno 3">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 4">
+                    </div>
+                </article>
+                <hr>
+                <h2>Professores</h2>
+                <article class="container-slide">
+                    <div class="paginas-slide">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <!-- copia -->
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                        <img id="img-perfil" src="/static/imagem/integrantes/perfil-masculino.jpg" alt="Foto do Aluno 2">
+                    </div>
+                </article>
+            </section>
         </aside>
 
-        <main class="main">
+        <main class="conteudo-princpal">
             <!-- Conteúdo principal da página -->
-            <h2>Construção do Projeto</h2>
-            <p>Nossa equipe de 12 alunos trabalhou arduamente para criar este programa de e-commerce.</p>
-            <img src="/static/imagem/integrantes/equipe.jpg" alt="Equipe trabalhando">
-            <h2>Tecnologias Utilizadas</h2>
-            <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Python</li>
-                <li>Django</li>
-                <li>MySQL</li>
-            </ul>
+            <article class="apresentacao">
+                <h2>Apresentação do Projeto</h2>
+                <p>O projeto da nossa equipe é a contrução de um e-commerce para uma loja de roupas de atacado e varejo, o e-commerce foi desenvolvido para a  empresa fazer a organização e vendas de seus produtos, nossa turma de desenvolvedores tem como instituião de ensio a escola <strong><a href="https://www.pa.senac.br/unidade/castanhal" target="_blank" class="externo">SENAC-CASTANHAL-PA</a></strong>. Temos como docentes, o professor <strong>Gabriel Costa</strong>, que ministra as aulas do dia-a-adia, e o professor <strong>Ertonilson Rocha</strong> que ministra as auas voltadas a criação do projeto integrador Pi. Nossa turma conta com de 12 Integrantes que trabalhoaram arduamente para criar este Projeto, veja ao lado a foto dos desevolvedores, e abaixo agumas das lingagem que foram ultilizadas para a construção do nosso E-commerce "Lojão do 20".</p>
+                <img id="img-reuniao" src="/static/imagem/integrantes/equipe.jpg" alt="Foto da equipe trabalhando">
+            </article>
+
+            <article class="art-main">
+                <h2>Tecnologias Utilizadas</h2>
+                <ul>
+                    <li>HTML
+                        <p>Em uma atividade de Desenvolvimento Web, o HTML ( HyperText Markup language) é uma linguagem de marcação utilizada para a 
+                          criação de conteúdo de texto e outros elementos de uma página Web, como imagens, áudios, vídeos e links. O HTML é o corpo de uma págiana web, dentro dela podemos criar uma estrutura com títulos,parágrafos e etc... 
+                        </p>
+                    </li>
+                    <li>CSS
+                        <p> Apredemos sobre o CSS e sua funcionalidade e que ele é uma limguagem de estilo utilizada para a formação de uma apresentação de um documento HTML. Ele pode ser utilizada para formatar textos, tabelas, e outros elementos HTML. O CSS é o rosto do HTML, você pode olhar dessa forma para ser mas fácil entender sobre essa
+                        linguagem. </p>
+                    </li>
+                    <li>Python
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem praesentium, illo, amet
+                            deserunt enim consequatur, minima quidem labore vero ipsa incidunt quos natus deleniti cum
+                            dolorem voluptates repudiandae nobis consectetur.</p>
+                    </li>
+                    <li>Django
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero velit odio minima eum distinctio
+                            fugiat, at quaerat ex dolores id ipsa ad, sapiente quo unde architecto! Ex vitae eligendi enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. At, optio harum, ipsa, odit ipsum dolor maxime velit reiciendis explicabo itaque laudantium qui quam. Doloremque architecto consequuntur perferendis odit repellat inventore.
+                        </p>
+                    </li>
+                    <li>MySQL
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur quaerat harum esse
+                            recusandae, placeat possimus earum natus ea! Totam quas modi, maiores corporis quibusdam autem.
+                            Sint iure saepe deserunt natus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad dolores omnis iure non natus consectetur rem mollitia! Reiciendis recusandae nisi officiis totam. Ipsam non provident qui quo adipisci sit ratione?</p>
+                    </li>
+                </ul>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </article>
+            
+            <!-- seção de comentários ou feedback -->
+            <article class="feedback">
+                <p>Deixe seu comentario sobre o que achou do nosso Projeto, e fica a vontade para deixar suas dicas e opiniões. <br> Agraceemos por sua visita, e volte sempre!</p>
+                <form action="" method="post">
+                    <fieldset>
+                        <legend>Comentários e Feedback</legend>
+                        <textarea name="comentario" placeholder="Deixe seu comentário aqui..."></textarea>
+                        <button type="submit">Enviar</button>
+                    </fieldset>
+                </form>
+            </article>
         </main>
 
+        <!-- Rodapé com informações de contato e direitos autorais -->
         <footer class="footer">
-            <!-- Rodapé com informações de contato e direitos autorais -->
-            <p>&copy; 2025 Equipe de Desenvolvimento</p>
+            <div class="social">
+                <a href="" target="_blank"><img src="/static/imagem/integrantes/icon/Instagram_Box_Filled_L@0.2x.png" alt="Instagra"></a>
+                <a href="" target="_blank"><img src="/static/imagem/integrantes/icon/Reddit_Box_Filled_L Shadowless@0.2x.png" alt="Reddit"></a>
+                <a href="" target="_blank"><img src="/static/imagem/integrantes/icon/Linkedin_Filled_L Shadowless@0.2x.png" alt="Linkedin"></a>
+            </div>
+            <p>&copy; 2025 Equipe de Desenvolvimento SENAC-CASTANHAL-PA</p>
+            
         </footer>
     </div>
-
 </body>
 
 </html>
