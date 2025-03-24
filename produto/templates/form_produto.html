@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>cadastro de produtos</title>
-    sty
+    <style>
+        {
+
+        }
+    </style>
 </head>
 <body>
+    <h1>Cadastra</h1>
     <div>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -35,9 +40,11 @@
         
             <label for="imagem">imagem do produto:</label>
             <input type="file" id="imagem" name = "imagem">
-        
-            <input type="submit"  value="Cadastrar" >
-        
+            <br><br>
+            <br><br>
+            <input type="submit"  value="CADASTRAR" >
+            <input type="reset" value="CANCELAR">
+            
     </div>
 
 
