@@ -6,35 +6,50 @@
     <title>Detalhes: {{produto.nome}}</title>
     <style>
         .container{
-            background-color: blue;
-            border-radius: 10px;
-            text-align: center;
-            width: 400px;
-            padding: 20px;
-            margin: 10px;
+            background-color: rgba(183, 183, 243, 0.438);
+            display: flex;
         }
         .card{
-            width: 200px;
+            width: 400px;
             background-color: azure;
             padding: 10px;
             border-radius: 10px;
             margin: 10px;
+            justify-content: space-between;
         }
 
-        .imagem{
-            width: 300px;
+        .imagens{
+            width: 450px;
             padding: 10px;
+            background-color: rgb(175, 175, 214);
+            justify-content: center;
+        }  
+
+        .imagens > img{
+            width: 200px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-       <div class="card">
-        <h1> {{produto.nome}} </h1>
-        <h2> {{produto.preço}} </h2>
-        <p> {{produto.descrição}} </p>
+    <main class="container">
+        <div class="imagens">
+            <img src="{{produto.imagem}}" >                                                                                                                                                                 
+            <img src="{{produto.imagem2}}" >
+            <img src="{{produto.imagem3}}" >
+            <img src="{{produto.imagem4}}" >
+            <div class="cardimg">
+            </div>
         </div>
-    <img src="{{produto.imagem}}" >    
-    </div>
+        <div class="card">
+            <h2> {{produto.nome}} </h2>
+            <h3> {{produto.preço}} </h3>
+            <p> {{produto.descrição}} </p>
+            <button class="Comprar agora">Comprar agora</button>
+            <button class="Carrinho"></button>
+                <i class="bi bi-cart4"></i>
+            </button>
+                <i class="bi bi-cart4"></i>
+        </div>
+    </main>
 </body>
-</html>
+</html> 
