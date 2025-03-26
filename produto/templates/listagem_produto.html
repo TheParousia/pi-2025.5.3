@@ -15,26 +15,28 @@
     <style>
         .container-menu {
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: auto;
+            padding: 10px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
+
         }
 
         .card {
             width: 300px;
+            margin: 5px;
             margin-bottom: 10px;
-            border: 1px solid #0b07ee;
+            border: 1px solid #bbbbbb;
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease;
             color: #fff;
             padding: 20px;
-            background-color: #4cafa7;
+            background-color: #F2F2F2;
             font-family: 'Open Sans', sans-serif;
             font-size: 18px;
-            background-image: linear-gradient(to bottom, #0bd0eb, #14c0cc);
+            background-image: linear-gradient(to bottom, #c2c2c2, #F2F2F2);
             transition: all 0.3s ease;
         }
 
@@ -51,6 +53,26 @@
             padding: 20px;
             text-align: center;
 
+        }
+
+        .botão-submit{
+            background-color: #0F528C;
+            border-radius: 10px;
+            border-color: #0F528C;
+            color: #F2F2F2;
+        }
+
+        .botão-submit:hover {
+            background-color: #D9C091;
+            color: #071E41;
+            border-radius: 10px;
+            transition: 0.5s;
+            border-color: #D9C091;
+
+        }
+        
+        .card-text {
+            color: #0b2347;
         }
     </style>
 
@@ -92,9 +114,13 @@
             </div>
             <h6 class="nome_logo" style="color: white; font-size: large;">Lojão dos 20</h6>
         </div>
-        
+
+
+    </div>
+</div>
+ 
     </nav>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="color: #F2F2F2;">
         <div class="container-fluid">
             <form class="d-flex" role="search">
                 <input name="nome_produto" class="form-control me-2" type="search"
@@ -111,10 +137,7 @@
                     aria-label="Search" style="width: 150px;">
                 <input name="valor_max" class="form-control me-2" type="number" placeholder="Valor máximo"
                     aria-label="Search" style="width: 150px;">
-                <button class="btn btn-outline-success" type="submit"
-                  
-                
-                    style="color: white; border-color: white;">Pesquisar</button>
+                <button class="botão-submit" type="submit">Pesquisar</button>     
             </form>
         </div>
     </nav>
@@ -124,11 +147,11 @@
         <div class="card" style="width: 18rem;">
             <img src="{{produto.imagem.url}}" class="card-img-top" alt="imagem-produto">
             <div class="card-body">
-                <h5 class="card-title">{{produto.nome}}</h5>
+                <h5 class="card-text">{{produto.nome}}</h5>
                 <p class="card-text">{{produto.descricao}}</p>
                 <p class="card-text">R$ {{produto.preço}}</p>
                 <p class="card-text">Estoque: {{produto.quantidade_estoque}}</p>
-                <a href="#" class="btn btn-primary">Detalhes</a>
+                <a href="#" class="btn btn-primary" style="color: #F2F2F2; background-color: #0F528C; border-color: #0F528C;">Detalhes</a>
             </div>
         </div>
         {%endfor%}
