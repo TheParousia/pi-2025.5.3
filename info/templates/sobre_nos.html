@@ -19,9 +19,10 @@
 
 /* Defina as variáveis CSS */
 :root {
-  --cor-principal: rgba(0, 0, 0, 0.555);
-  --cor-secundaria: rgba(240, 248, 255, 0.11);
-  --cor-terciaria: #999;
+  --cor-principal: #071C59;
+  --cor-secundaria: #11538C;
+  --cor-terciaria: #D9BB96;
+  --cor-quaternaria: #D9D9D9;
 
   --fonte-titulo: fonte1;
   --fonte-principal: Arial, sans-serif;
@@ -30,7 +31,8 @@
 
 /* Defina o estilo do corpo da página */
 body {
-  background-image: url('/static/imagem/integrantes/fundo-4.jpg');
+  background-color: var(--cor-principal);
+  /* background-image: url('/static/imagem/integrantes/fundo-4.jpg'); */
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -69,19 +71,19 @@ a.externo::after {
   font-size: 4em;
   text-align: left;
   margin-left: 0px;
-  color: white;
-   text-shadow: 2px 2px 4px #f8b806,
-    -2px -2px 4px #0000FF;
+  color: var(--cor-terciaria);
+   text-shadow: 2px 2px 4px var(--cor-principal),
+    -2px -2px 4px var(--cor-principal);
 }
 
 .header h1 {
     font-family: 'fonte1', sans-serif;
     font-size: 8em;
     text-align: center;
-    color: white;
+    color: var(--cor-terciaria);
     margin: 3px;
-    text-shadow: 2px 2px 4px #f8b806,
-      -2px -2px 4px #0000FF;
+    text-shadow: 2px 2px 4px var(--cor-principal),
+      -2px -2px 4px var(--cor-principal);
 }
 
 /* Defina o estilo do nav */
@@ -112,7 +114,7 @@ a.externo::after {
 
 /* Defina o estilo da barra lateral (equipes)*/
 .container-cards {
-  background-color: var(--cor-principal);
+  background-color: var(--cor-secundaria);
   grid-column: 1;
   border: 0.5px solid black;
   box-shadow: 2px 2px 5px black;
@@ -197,8 +199,12 @@ a.externo::after {
   color: white;
 }
 
+.apresentacao figure{
+  display: flex;
+}
+
 .apresentacao #img-reuniao {
-  width: 800px;
+  width: 500px;
   padding-left: 50px;
 }
 
@@ -239,16 +245,10 @@ a.externo::after {
   border-radius: 5px;
   box-shadow: 2px 2px 5px black;
   grid-column: 1 / -1;
-  /* Define a largura do rodapé no grid */
-  /* Define a cor de fundo do rodapé */
   height: 40px;
-  /* Define a altura do rodapé */
   display: flex;
-  /* Define o display do rodapé como flex */
   justify-content: center;
-  /* Define o alinhamento do texto do rodapé */
   align-items: center;
-  /* Define o alinhamento do texto do rodapé */
 }
 
 .footer p {
@@ -367,7 +367,10 @@ a.externo::after {
             <article class="apresentacao">
                 <h2>Apresentação do Projeto</h2>
                 <p>O projeto da nossa equipe é a contrução de um e-commerce para uma loja de roupas de atacado e varejo, o e-commerce foi desenvolvido para a  empresa fazer a organização e vendas de seus produtos, nossa turma de desenvolvedores tem como instituião de ensio a escola <strong><a href="https://www.pa.senac.br/unidade/castanhal" target="_blank" class="externo">SENAC-CASTANHAL-PA</a></strong>. Temos como docentes, o professor <strong>Gabriel Costa</strong>, que ministra as aulas do dia-a-adia, e o professor <strong>Ertonilson Rocha</strong> que ministra as auas voltadas a criação do projeto integrador Pi. Nossa turma conta com de 12 Integrantes que trabalhoaram arduamente para criar este Projeto, veja ao lado a foto dos desevolvedores, e abaixo agumas das lingagem que foram ultilizadas para a construção do nosso E-commerce "Lojão do 20".</p>
-                <img id="img-reuniao" src="/static/imagem/integrantes/equipe.jpg" alt="Foto da equipe trabalhando">
+                <figure>
+                  <img id="img-reuniao" src="/static/imagem/integrantes/equipe.jpg" alt="Foto da equipe trabalhando">
+                  <img id="img-reuniao" src="/static/imagem/integrantes/Design Lojão do 20.png" alt="Foto da equipe trabalhando">
+                </figure>
             </article>
 
             <article class="art-main">
@@ -412,7 +415,7 @@ a.externo::after {
                 <form action="" method="post">
                     <fieldset>
                         <legend>Comentários e Feedback</legend>
-                        <textarea name="comentario" placeholder="Deixe seu comentário aqui..."></textarea>
+                        <textarea name="comentario" placeholder="Deixe seu comentário aqui..." rows="5" cols="100"></textarea>
                         <button type="submit">Enviar</button>
                     </fieldset>
                 </form>
