@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.listaProdutos),
     path('menu/', views.listaProdutos),
     path('admin/', admin.site.urls),
+    path('page/', views.page)
 ]
 
 urlpatterns += staticfiles_urlpatterns()

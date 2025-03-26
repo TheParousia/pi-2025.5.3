@@ -29,3 +29,6 @@ def listaProdutos(request):
         #  Member.objects.all().order_by('firstname').values()
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
+
+def page(request):
+    return render(request,'page.html')
