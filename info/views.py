@@ -20,3 +20,6 @@ def sobreNos(request):
 def desenvolvedores(request):
     return render(request, 'desenvolvedores.html')
 
+def contatos(request):
+    return render(request, 'contatos.html')
+
