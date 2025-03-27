@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from produto import views
-from usuario import views 
+from usuario import views
+from venda import views
 
 urlpatterns = [
-    path('', views.listaProdutos),
+    path('lista/', views.listaProdutos),
     path('cadastro/',views.cadastroCliente, name= 'cadastro_usuario'),
     path('produto/cadastro/', views.cadastroProduto),
     path('produto/<int:id>', views.detalheProduto),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('login/',views.login),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('carrinho/', views.carrinho),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
