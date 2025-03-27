@@ -20,6 +20,7 @@ from usuario import views
 urlpatterns = [
     path('',views.cadastroCliente, name= 'cadastro_usuario'),
     path('produto/cadastro/', views.cadastroProduto),
+    path('produto/<int:id>', views.detalheProduto),
     path('home/',views.home, name='home'),
     path('privado/',views.privado, name='privado'),
     path('funcionario/',views.funcionario, name='funcionario'),

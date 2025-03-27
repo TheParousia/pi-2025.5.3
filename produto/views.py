@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Produto
 
 # Create your views here.
+def detalheProduto(request, id):
+    print(id)
+    produto = get_object_or_404(Produto,pk = id)
+    return render (request,"detalhe_produto.html", {"produto":produto})
 
 def cadastroProduto(request):
     if request.method == 'POST':
@@ -24,4 +28,3 @@ def cadastroProduto(request):
 
         produto.save()
     return render(request,'form_produto.html')
-    
