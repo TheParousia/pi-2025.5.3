@@ -19,6 +19,7 @@ from django.urls import path, include
 from usuario import views 
 urlpatterns = [
     path('',views.cadastroCliente, name= 'cadastro_usuario'),
+    path('produto/cadastro/', views.cadastroProduto),
     path('home/',views.home, name='home'),
     path('privado/',views.privado, name='privado'),
     path('funcionario/',views.funcionario, name='funcionario'),
@@ -26,6 +27,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
-
-
-# python manage.py runserver 0.0.0.0:80
