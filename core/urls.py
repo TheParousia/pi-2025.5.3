@@ -20,10 +20,9 @@ from produto import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', views.listaProdutos),
+    path('', views.page),
     path('menu/', views.listaProdutos),
     path('admin/', admin.site.urls),
-    path('page/', views.page)
 ]
 
 urlpatterns += staticfiles_urlpatterns()
