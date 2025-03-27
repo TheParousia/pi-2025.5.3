@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 def login(request):   
     if request.method == "POST":
-        login = request.POST.get("login")
+        email = request.POST.get("email")
         senha = request.POST.get("senha")
 
         

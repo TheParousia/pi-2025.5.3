@@ -7,32 +7,105 @@
    <title>Pagina de Login</title>
 </head>
 <style>
-.container-login{
-   display: flex;
-   flex-wrap: wrap;
+   body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(36, 67, 172));
+   }
+   .container-login {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgb(white);
+      padding: auto;
+   }
+   h2{
+      text-align: center;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 30px;
+      text-shadow: 1px 1px 1px #000000;
+   }
+   .login { 
+      display: flex;
+      justify-content: center;
+      align-items: center;;
+   }
+   .login input{
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 10px;
+      padding: 5px 39px 5px 39px;
+      cursor: pointer;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-weight: bold;
+   }
+   div{ 
+      background-color: #ffffff;
+      padding: 10px 10px 10px 10px;
+      border-radius: 20px;
+   }
+   .input-usuario{
+      font-weight: bold;
+   }
+   .input-usuario input{
+      border-radius: 30px;
+      padding: 5px 5px 5px 5px;
+      font-size: 14px;
+   }
+   .input-senha{
+      font-weight: bold;
+   }
+   .input-senha input{
+      border-radius: 30px;
+      padding: 5px 5px 5px 5px;
+      font-size: 14px;
+   }
    
-}
-
-
+   .input-senha button{
+      border: none;
+      background-color: white;
+      cursor: pointer;
+   }
+   a{
+      font-weight: bold;
+      margin: 10px ;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   }
 </style>
+
 <body>
    <div class="container-login">
       <h2>Login</h2>
       <form action="" method="post">
          <div class="input-usuario">
-            <label for="usuario">Nome de Usuário:</label>
-            <input type="text" id="email" name="email" required>
+            <label for="usuario">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Digite seu email" >
             <br><br>
          </div>
          <div class="input-senha">
             <label for="password">Senha:</label>
-            <input type="text" id="senha" name="senha" required>
+            <input type="text" id="senha" name="senha" placeholder="Digite sua senha" >
+            <button type="button" id="olho" onclick="toggleSenha()">👁️</button>
          </div>
          <br><br>
-         <input type="submit" value="login">
+         <a href="">Cadastre-se...</a>
+         <div class="login">
+            <input type="submit" value="login">
+         </div>
 
       </form>
    </div>
+
+   <!-- JavaScript -->
+   <script>
+      window.alert("Seja bem vindo à página de login!");
+      function toggleSenha() {
+         const senhaInput = document.getElementById('senha');
+         const tipo = senhaInput.type === 'password' ? 'text' : 'password';
+         senhaInput.type = tipo;
+      }
+   </script>
 </body>
 
 </html>
