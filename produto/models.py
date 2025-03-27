@@ -9,8 +9,7 @@ class Produto(models.Model):
     imagem2 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem3 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem4 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
-
     descrição = models.TextField()
     preço = models.DecimalField(max_digits=15, decimal_places=2)
     quantidade_estoque = models.IntegerField()
-    
+
