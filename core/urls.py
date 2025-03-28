@@ -15,14 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from produto import views
+from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from produto import vwproduto
+from usuario import vwusuario
+from info import vwinfo
 
 urlpatterns = [
-    path('', views.page),
-    path('menu/', views.listaProdutos),
+    #Página de exemplo de como se usar o template master base.html
+    path('page/', views.page),
+
+    path('', vwproduto.listaProdutos),
+    path('produto/cadastro/', vwproduto.cadastroProduto),
+    path('produto/<int:id>', vwproduto.detalheProduto),
+  
+    path('carrinho/', include('venda.urls')),
+  
+    path('sobre_nos/',vwinfo.sobreNos, name='sobre_nos'),
+    path('dev/',vwinfo.desenvolvedores, name='dev'),
+    path('contatos/',vwinfo.contatos, name='contatos'),
+
+    path('login/',vwusuario.login),
+    path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),  
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
