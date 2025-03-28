@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>cadastro de produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="/static/5465865.png" type="image/x-icon">k
+    <style>
+        @font-face {
+            font-family: 'font-1';
+            src: url(/static/font/FiraSans-Regular.ttf);
+        }
+        :root{
+           --corprincipal: #ffffff;
+           --font-principal: font-1;
+        }
+        
+        .mb-3{
+            color: var(--corprincipal);
+        }
+        
+        .btn btn-primary:hover{
+            background-color: rgb(137, 22, 22);
+        }
+
+
+        body {
+            background-color:#FFFF;
+        }
+
+        .container {
+            margin: 2em;
+           
+        }
+
+        h1{
+            color: var(--corprincipal);
+            font-family: var(--font-principal);
+            font-size: 4em;
+        }
+        h3{
+            font-family: var(--font-principal);
+        }
+
+
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 8px;
+            
+            
+        }
+            
+        .div2 {
+            grid-column: span 3 / span 3;
+            grid-row: span 5 / span 5;
+            grid-column-start: 2;
+            background-color: #191a22;
+            width: 80em;
+            padding: 15px;
+            margin: 5em;
+            border-radius: 5%;
+        }
+        
+        body{
+            background-image: url(/static/imagem/fundo/pexels-joshsorenson-1586132.jpg);
+            background-repeat: no-repeat;
+            
+        }
+
+
+    </style>
+</head>
+
+<body>
+  
+    
+    <div class="parent">
+        <div class="div2">
+            
+            
+            <h1>Atualizar produtos</h1>
+            <br><hr>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+        
+                    <label for="nome">Nome:</label>
+                    <input value="{{produto.nome}}" class="form-control" type="text" name="nome" required  placeholder="Digite o nome do seu produto aqui" >
+                    <br>
+                    <label for="valor">Preço:</label>
+                    <input value="{{produto.preço}}" class="form-control" type="number" id="valor" name="valor" required placeholder="Digite o valor do produto">
+                    <br>
+                    <label for="descrição">descrição:</label>
+                    <input value="{{produto.descrição}}" class="form-control" type="text" name="descrição" required placeholder="Digite informações sobre o produto">
+                    <br>
+                    <label for="quantidade em estoque">Quantidade em estoque:</label>
+                    <input value="{{produto.quantidade_em_estoque}}" class="form-control" type="text" name="quantidade_em_estoque" required placeholder="Digite a quantidade do produto existente no estoque">
+                    
+                    
+                    
+                    
+                    <br>
+                    <hr>
+                    <!--alt + shift + seta para baixo duplica-->
+                    <h3>Escolha imagens para seu produto:</h3>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label" >insira a imagem 1</label>
+                        <input class="form-control" type="file" id="formFile" required >
+                    
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">insira a imagem 2</label>
+                        <input class="form-control" type="file" id="formFile" name="imagem2" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">insira a imagem 3</label>
+                        <input class="form-control" type="file" id="formFile" name="imagem3" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">insira a magem 4</label>
+                        <input class="form-control" type="file" id="formFile" name="imagem4"required>
+                    </div>
+                    
+                    <input class="btn btn-primary" type="submit" value="ATUALIZAR">
+                    <input class="btn btn-secondary" type="reset" value="CANCELAR">
+                </div>
+    
+    
+        </div>
+                    
+    </div>
+    <div class="instruções">
+        
+        <p></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
