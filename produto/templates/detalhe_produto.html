@@ -9,26 +9,93 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <style>
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #071E41;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+
         .container-nativo {
             background-color: #F2F2F2;
+            min-height: 100vh;
         }
 
-        .dados-produto{
-            background-color:#F2F2F2
-            ;
-            padding: 10px;
-            border-radius: 10px;
+        .col-dados-produto {
+            display: flexbox;
+            max-width: 700px;
+            background-color: #F2F2F2;
+            padding-top: 70px;
+            border-radius: 15px;
             margin: 10px;
-            justify-content: space-between;
-
+            gap: 30px;
+            text-align: center;
+        }
+        .carousel-inner{
+            border-radius: 20px;
+            margin: 10px;
         }
 
+        h2 {
+            color: #071E41;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
 
+        h3 {
+            color: #071E41;
+            margin-left: 150px;
+            padding-left: 100px;
+            width: 300px;
+        }
 
+        p {
+            color: #071E41;
+            font-weight: 500;
+        }
 
+        .button-comprar {
+            background-color: #071E41;
+            border: none;
+            padding: 12px 24px;
+            color: #F2F2F2;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+            width: 200px;
+        }
+
+        .button-comprar:hover {
+            transform: scale(1.05);
+        }
+
+        .button-carrinho {
+            background-color: #071E41;
+            border: none;
+            padding: 12px 24px;
+            color: #F2F2F2;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .button-carrinho:hover {
+            transform: scale(1.05);
+        }
 
         .card {
             width: max-content;
+        }
+
+        .carrinho {
+            background-color: 0F528C;
         }
 
         imagens {
@@ -46,7 +113,7 @@
 
 <body>
     <div class="container">
-        <div class="container text-center">
+        <div class="container-text-center">
             <div class="row">
                 <div class="col">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -77,18 +144,21 @@
                     </div>
 
                 </div>
-                <div class="col dados-produto">
+                <div class="col-dados-produto">
+                    <br>
                     <h2> {{produto.nome}} </h2>
-                    <h3> {{produto.preço}} </h3>
+                    <br>
+                    <h3>R${{produto.preço}}</h3>
+                    <br>
                     <p> {{produto.descrição}} </p>
-                    <button class="Comprar agora">Comprar agora</button>
-                    <button class="Carrinho"></button>
-                    <i class="bi bi-cart4"></i>
+                    <br>
+                    <button class="button-comprar">Comprar agora</button>
+                    <button class="button-carrinho"> 🛒Adicionar ao carrinho</i>
                     </button>
-                    <i class="bi bi-cart4"></i>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <main hidden class="container-nativo">
@@ -128,8 +198,8 @@
             <h3> {{produto.preço}} </h3>
             <p> {{produto.descrição}} </p>
             <button class="Comprar agora">Comprar agora</button>
-            <button class="Carrinho"></button>
-            <i class="bi bi-cart4"></i>
+            <button class="Carrinho">
+                <i class="bi bi-cart4"></i>
             </button>
             <i class="bi bi-cart4"></i>
         </div>
