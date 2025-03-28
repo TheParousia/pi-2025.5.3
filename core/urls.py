@@ -17,16 +17,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from produto import views as vwproduto
-from usuario import views as vwusuario
+from produto import vwproduto
+from usuario import vwusuario
+from info import vwinfo
 
 urlpatterns = [
-    path('', include('venda.urls')),
-    path('lista/', vwproduto.listaProdutos),
+    path('', vwproduto.listaProdutos),
     path('produto/cadastro/', vwproduto.cadastroProduto),
     path('produto/<int:id>', vwproduto.detalheProduto),
-    path('cadastro/', vwusuario.cadastroCliente, name= 'cadastro_usuario'),
+  
+    path('carrinho/', include('venda.urls')),
+  
+    path('sobre_nos/',vwinfo.sobreNos, name='sobre_nos'),
+    path('dev/',vwinfo.desenvolvedores, name='dev'),
+    path('contatos/',vwinfo.contatos, name='contatos'),
+
     path('login/',vwusuario.login),
+    path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),  
+
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
