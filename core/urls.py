@@ -16,9 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from usuario import views 
-urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('admin/', admin.site.urls),
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from produto import vwproduto
+from usuario import vwusuario
+from info import vwinfo
 
+urlpatterns = [
+    path('', vwproduto.listaProdutos),
+    path('produto/cadastro/', vwproduto.cadastroProduto),
+    path('produto/<int:id>', vwproduto.detalheProduto),
+  
+    path('sobre_nos/',vwinfo.sobreNos, name='sobre_nos'),
+    path('dev/',vwinfo.desenvolvedores, name='dev'),
+    path('contatos/',vwinfo.contatos, name='contatos'),
+
+    path('login/',vwusuario.login),
+    path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),  
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
