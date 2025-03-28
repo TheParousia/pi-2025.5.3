@@ -34,11 +34,16 @@
             border-radius: 15px;
             margin: 20px;
             text-align: center;
-            padding-bottom: 70px;
+            padding-bottom: 20px;
+            width: 600px;
+            height: 500px;
         }
+
         .carousel-inner{
             border-radius: 20px;
-            margin: 10px;
+            margin: 20px;
+            width: 600px;
+            height: 500px;
         }
 
         h2 {
@@ -53,6 +58,7 @@
             width: 300px;
             font-family: 'Times New Roman', Times, serif;
             text-align: right;
+            padding-bottom: 90px;
         }
 
         p {
@@ -97,10 +103,6 @@
             width: max-content;
         }
 
-        .carrinho {
-            background-color: 0F528C;
-        }
-
         imagens {
             width: max-content;
             background-color: rgb(175, 175, 214);
@@ -122,16 +124,16 @@
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{produto.imagem}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem2}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem2}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem3}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem3}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem4}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem4}}" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
