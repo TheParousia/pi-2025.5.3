@@ -46,4 +46,4 @@ def cadastroCliente(request):
 
         return redirect('home')
     
-    return render(request,'form_cliente.html')
+    return render(request,'form_client.html')

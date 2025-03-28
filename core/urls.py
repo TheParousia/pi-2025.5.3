@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from info.views import sobreNos, desenvolvedores, contatos
+from info.views import sobreNos, desenvolvedores, contatos, faq
 from produto.views import listaProdutos, cadastroProduto, detalheProduto
 from venda.views import carrinho
 from usuario.views import cadastroCliente
@@ -36,6 +36,7 @@ urlpatterns = [
     path('info/sobre_nos/', sobreNos, name='sobre_nos'),
     path('info/dev/', desenvolvedores, name='dev'),
     path('info/contatos/', contatos, name='contatos'),
+    path('info/faq/', faq, name='faq'),
 
     # App usuario
     path('cadastro/', cadastroCliente, name='cadastro_usuario'),

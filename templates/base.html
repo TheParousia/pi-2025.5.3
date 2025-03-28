@@ -115,7 +115,7 @@
       <div class="row">
         <div class="col-2 container-logo">
           <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-            <img src="static/imagem/icone/logo.png" class="logo" alt="logo">
+            <img src="/static/imagem/icone/logo.png" class="logo" alt="logo">
           </a>
         </div>
         <div class="col">
@@ -126,7 +126,7 @@
               </li>
               <li><a href="#" class="nav-link px-2 text-white" _msttexthash="253617" _msthash="30">Precificação</a>
               </li>
-              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="429065" _msthash="31">Perguntas
+              <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white" _msttexthash="429065" _msthash="31">Perguntas
                   frequentes</a>
               </li>
               <li><a href="#" class="nav-link px-2 text-white" _msttexthash="59826" _msthash="32">Sobre</a></li>
@@ -181,10 +181,9 @@
           _msthash="15"></a></li>
       <li class="nav-item"><a href="#" class="nav" _msttexthash="253617"
           _msthash="16">Precificação</a></li>
-      <li class="nav-item"><a href="#" class="nav" _msttexthash="429065"
+      <li class="nav-item"><a href="{% url 'faq' %}" class="nav" _msttexthash="429065"
           _msthash="17">Perguntas frequentes</a></li>
-      <li class="nav-item"><a href="#" class="nav" _msttexthash="59826"
-          _msthash="18">Sobre</a></li>
+      
     </ul>
     <p class="texto" _msttexthash="269243" _msthash="19">© 2025 Senac, Inc</p>
   </footer>

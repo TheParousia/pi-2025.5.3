@@ -23,3 +23,6 @@ def desenvolvedores(request):
 def contatos(request):
     return render(request, 'contatos.html')
 
+def faq(request):
+    return render(request, 'faq.html')
+
