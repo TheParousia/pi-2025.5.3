@@ -14,31 +14,42 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from produto import vwproduto
-from usuario import vwusuario
-from info import vwinfo
+
+from info.views import sobreNos, desenvolvedores, contatos
+from produto.views import listaProdutos, cadastroProduto, detalheProduto
+from venda.views import carrinho
+from usuario.views import cadastroCliente
+from django.contrib import admin
+
+# Rotas de exemplo de código
+from exemplo.views import publico, logado, funcionario
 
 urlpatterns = [
-    #Página de exemplo de como se usar o template master base.html
-    path('page/', views.page),
+    # App produto
+    path('', listaProdutos, name='lista_produtos'),
+    path('produto/cadastro/', cadastroProduto, name='cadastro_produto'),
+    path('produto/<int:id>', detalheProduto, name='detalhe_produto'),
 
-    path('', vwproduto.listaProdutos),
-    path('produto/cadastro/', vwproduto.cadastroProduto),
-    path('produto/<int:id>', vwproduto.detalheProduto),
-  
-    path('carrinho/', include('venda.urls')),
-  
-    path('sobre_nos/',vwinfo.sobreNos, name='sobre_nos'),
-    path('dev/',vwinfo.desenvolvedores, name='dev'),
-    path('contatos/',vwinfo.contatos, name='contatos'),
+    # App info
+    path('info/sobre_nos/', sobreNos, name='sobre_nos'),
+    path('info/dev/', desenvolvedores, name='dev'),
+    path('info/contatos/', contatos, name='contatos'),
 
-    path('login/',vwusuario.login),
-    path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),  
+    # App usuario
+    path('cadastro/', cadastroCliente, name='cadastro_usuario'),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+
+    # App venda
+    path('carrinho/', carrinho, name='carrinho'),
+
+    # Teste
+    path('exemplo/publico', publico, name='publico'),
+    path('exemplo/logado/', logado, name='logado'),
+    path('exemplo/funcionario/', funcionario, name='funcionario'),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
