@@ -11,8 +11,10 @@ def login(request):
         login = request.POST.get("login")
         senha = request.POST.get("senha")
 
-
     return render(request,'login.html')
+
+def perfilCliente(request):
+    return render(request,'perfil_cliente.html')
 
 def home(request):
     return render(request,'home.html')
