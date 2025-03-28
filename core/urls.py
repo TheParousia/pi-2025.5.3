@@ -22,6 +22,9 @@ from usuario import vwusuario
 from info import vwinfo
 
 urlpatterns = [
+    #Página de exemplo de como se usar o template master base.html
+    path('page/', views.page),
+
     path('', vwproduto.listaProdutos),
     path('produto/cadastro/', vwproduto.cadastroProduto),
     path('produto/<int:id>', vwproduto.detalheProduto),
@@ -34,7 +37,6 @@ urlpatterns = [
 
     path('login/',vwusuario.login),
     path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),  
-
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

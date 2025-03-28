@@ -31,6 +31,9 @@ def listaProdutos(request):
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
 
+def page(request):
+    return render(request,'page.html')
+
 def detalheProduto(request, id):
     print(id)
     produto = get_object_or_404(Produto,pk = id)
