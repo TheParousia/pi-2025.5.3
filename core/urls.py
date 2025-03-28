@@ -16,15 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from usuario import views 
+from usuario import views as vwusuario
+from produto import views as vwproduto
+
 urlpatterns = [
-    path('',views.cadastroCliente, name= 'cadastro_usuario'),
-    path('produto/cadastro/', views.cadastroProduto),
-    path('produto/<int:id>', views.detalheProduto),
-    path('home/',views.home, name='home'),
-    path('privado/',views.privado, name='privado'),
-    path('funcionario/',views.funcionario, name='funcionario'),
-    path('login/',views.login),
+    path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),
+    path('produto/cadastro/', vwproduto.cadastroProduto),
+    path('produto/<int:id>', vwproduto.detalheProduto),
+    path('login/',vwusuario.login),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
