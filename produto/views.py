@@ -2,19 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto
 
 # Create your views here.
+
+
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
     valor_min = request.GET.get('valor_min')
     valor_max = request.GET.get('valor_max')
     ordem = request.GET.get('ordem')
-    
+
     print("Produto pesquisado: ", nome_produto)
-    
+
     produtos = Produto.objects.all()
-    
+
     if nome_produto:
         produtos = Produto.objects.filter(nome__icontains=nome_produto)
-    
+
     if valor_min and valor_max:
         produtos = Produto.objects.filter(preço__range=(valor_min, valor_max))
 
@@ -31,13 +33,16 @@ def listaProdutos(request):
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
 
+
 def page(request):
-    return render(request,'page.html')
+    return render(request, 'page.html')
+
 
 def detalheProduto(request, id):
     print(id)
-    produto = get_object_or_404(Produto,pk = id)
-    return render (request,"detalhe_produto.html", {"produto":produto})
+    produto = get_object_or_404(Produto, pk=id)
+    return render(request, "detalhe_produto.html", {"produto": produto})
+
 
 def cadastroProduto(request):
     if request.method == 'POST':
@@ -59,8 +64,7 @@ def cadastroProduto(request):
         produto.imagem4 = request.FILES.get('imagem4')
 
         produto.save()
-    return render(request,'form_produto.html')
-
+    return render(request, 'form_produto.html')
 
 
 def controleEstoque(request):
@@ -80,14 +84,14 @@ def controleEstoque(request):
 
         adm.save()
 
-    return render(request, 'adm_produto.html', {'produtos': produtos })
+    return render(request, 'adm_produto.html', {'produtos': produtos})
+
 
 def deletarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
     produto.delete()
 
     return redirect('adm_produto')
-
 
 
 def atualizarProduto(request, id):
@@ -97,21 +101,23 @@ def atualizarProduto(request, id):
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
-        descricao = request.POST.get('descrição')
-        preco = request.POST.get('valor')
+        descrição = request.POST.get('descrição')
+        print(request.POST.get('valor'))
+        preço = request.POST.get('valor')
+        print('quantidade_em_estoque: ')
+        print(request.POST.get('quantidade_em_estoque'))
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto.nome = nome
-        produto.descricao = descricao
-        produto.preco = preco
-        produto.quantidade_estoque = quantidade_em_estoque
+        produto.descricao = descrição
+        produto.preço = float(preço)
+        produto.quantidade_estoque = int(quantidade_em_estoque)
 
-
-        produto.imagem = request.FILES.get('imagem')
-        produto.imagem2 = request.FILES.get('imagem2')
-        produto.imagem3 = request.FILES.get('imagem3')
-        produto.imagem4 = request.FILES.get('imagem4')
+        # produto.imagem = request.FILES.get('imagem')
+        # produto.imagem2 = request.FILES.get('imagem2')
+        # produto.imagem3 = request.FILES.get('imagem3')
+        # produto.imagem4 = request.FILES.get('imagem4')
 
         produto.save()
 
-    return render(request,'atualizar_produto.html', {'produto': produto})
+    return render(request, 'atualizar_produto.html', {'produto': produto})

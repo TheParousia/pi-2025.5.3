@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,42 +12,72 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="/static/5465865.png" type="image/x-icon">
     <style>
         @font-face {
             font-family: 'font-1';
             src: url(/static/font/FiraSans-Regular.ttf);
         }
-        :root{
-           --corprincipal: #ffffff;
-           --font-principal: font-1;
+
+        :root {
+            --corprincipal: #ffffff;
+            --font-principal: font-1;
         }
-        
-        .mb-3{
-            color: var(--corprincipal);
+
+        .mb-3 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
         }
-        
-        .btn btn-primary:hover{
+
+        .editar {
+            color: white;
+            flex: 1;
+        }
+
+        .img {
+            flex-shrink: 0;
+            width: 400px;
+            height: 400px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .btn btn-primary:hover {
             background-color: rgb(137, 22, 22);
         }
 
 
         body {
-            background-color:#FFFF;
+            background-color: #FFFF;
         }
 
         .container {
             margin: 2em;
-           
+
         }
 
-        h1{
+        h1 {
             color: var(--corprincipal);
             font-family: var(--font-principal);
             font-size: 4em;
         }
-        h3{
+
+        h3 {
             font-family: var(--font-principal);
         }
 
@@ -56,10 +87,10 @@
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: repeat(5, 1fr);
             gap: 8px;
-            
-            
+
+
         }
-            
+
         .div2 {
             grid-column: span 3 / span 3;
             grid-row: span 5 / span 5;
@@ -68,85 +99,98 @@
             width: 80em;
             padding: 15px;
             margin: 5em;
-            border-radius: 5%;
-        }
-        
-        body{
-            background-image: url(/static/imagem/fundo/pexels-joshsorenson-1586132.jpg);
-            background-repeat: no-repeat;
-            
+            border-radius: 10px;
         }
 
+        body {
+            background-image: url(/static/imagem/fundo/pexels-joshsorenson-1586132.jpg);
+            background-repeat: no-repeat;
+
+        }
     </style>
 </head>
 
 <body>
-  
-    
+
+
     <div class="parent">
         <div class="div2">
-            
-            
+
+
             <h1>Atualizar produtos</h1>
-            <br><hr>
+            <br>
+            <hr>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
-        
-                    <label for="nome">Nome:</label>
-                    <input value="{{produto.nome}}" class="form-control" type="text" name="nome" required  placeholder="Digite o nome do seu produto aqui" >
-                    <br>
-                    <label for="preco">Preço:</label>
-                    <input value="{{produto.preco}}" class="form-control" type="number" id="preco" name="preco" required placeholder="Digite o valor do produto">
-                    <br>
-                    <label for="descrição">descrição:</label>
-                    <input value="{{produto.descrição}}" class="form-control" type="text" name="descrição" required placeholder="Digite informações sobre o produto">
-                    <br>
-                    <label for="quantidade em estoque">Quantidade em estoque:</label>
-                    <input value="{{produto.quantidade_em_estoque}}" class="form-control" type="text" name="quantidade_em_estoque" required placeholder="Digite a quantidade do produto existente no estoque">
-                    
-                    
-                    
-                    
+                    <div class="editar">
+
+                        <label for="nome">Nome:</label>
+                        <input value="{{produto.nome}}" class="form-control" type="text" name="nome"
+                            placeholder="Digite o nome do seu produto aqui">
+                        <br>
+                        <label for="preço">Preço:</label>
+                        <input value="{{produto.preço}}" class="form-control" type="number" id="preço" step="0.01" name="valor"
+                            placeholder="Digite o valor do produto">
+                        <br>
+                        <label for="descricao">descrição:</label>
+                        <input value="{{produto.descrição}}" class="form-control" type="text" name="descrição"
+                            placeholder="Digite informações sobre o produto">
+                        <br>
+                        <label for="quantidade em estoque">Quantidade em estoque:</label>
+                        <input value="{{produto.quantidade_estoque}}" class="form-control" type="number"
+                            name="quantidade_em_estoque"
+                            placeholder="Digite a quantidade do produto existente no estoque">
+
+                        
+                    </div>
+
+                    <div class="img">
+                        <img src="/{{produto.imagem}}" class="d-block w-100" alt="...">
+                    </div>
+
+
+
                     <br>
                     <hr>
                     <h3>Escolha imagens para seu produto:</h3>
                     <div class="mb-3">
                         <label for="formFile" class="form-label" >insira a imagem 1</label>
-                        <input class="form-control" type="file" id="formFile" required >
+                        <input class="form-control" type="file" id="formFile"  >
                     
                     </div>
                     
                     <div class="mb-3">
                         <label for="formFile" class="form-label">insira a imagem 2</label>
-                        <input class="form-control" type="file" id="formFile" name="imagem2" required>
+                        <input class="form-control" type="file" id="formFile" name="imagem2" >
                     </div>
                     
                     <div class="mb-3">
                         <label for="formFile" class="form-label">insira a imagem 3</label>
-                        <input class="form-control" type="file" id="formFile" name="imagem3" required>
+                        <input class="form-control" type="file" id="formFile" name="imagem3" >
                     </div>
                     
                     <div class="mb-3">
                         <label for="formFile" class="form-label">insira a magem 4</label>
-                        <input class="form-control" type="file" id="formFile" name="imagem4"required>
+                        <input class="form-control" type="file" id="formFile" name="imagem4">
                     </div>
-                    
-                    <input class="btn btn-primary" type="submit" value="ATUALIZAR">
-                    <input class="btn btn-secondary" type="reset" value="CANCELAR">
                 </div>
-    
-    
+
+                <br>
+                <input class="btn btn-primary" type="submit" value="ATUALIZAR">
+                <input class="btn btn-secondary" type="reset" value="CANCELAR">
+
         </div>
-                    
+
     </div>
     <div class="instruções">
-        
+
         <p></p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
