@@ -9,23 +9,95 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <style>
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #071E41;
+        }
+
+
         .container-nativo {
             background-color: #F2F2F2;
+            min-height: 100vh;
         }
 
-        .dados-produto{
-            background-color:#F2F2F2
-            ;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px;
-            justify-content: space-between;
-
+        .col-dados-produto {
+            display: flexbox;
+            max-width: 600px;
+            background-color: #F2F2F2;
+            padding-top: 70px;
+            border-radius: 15px;
+            margin: 20px;
+            text-align: center;
+            padding-bottom: 20px;
+            width: 600px;
+            height: 500px;
         }
 
+        .carousel-inner{
+            border-radius: 20px;
+            margin: 20px;
+            width: 600px;
+            height: 500px;
+        }
 
+        h2 {
+            color: #071E41;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
 
+        h3 {
+            color: #071E41;
+            margin-left: 150px;
+            padding-left: 100px;
+            width: 300px;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: right;
+            padding-bottom: 90px;
+        }
 
+        p {
+            color: #071E41;
+            font-weight: 500;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+
+        .button-comprar {
+            background-color: #071E41;
+            border: none;
+            padding: 12px 24px;
+            color: #F2F2F2;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+            width: 200px;
+        }
+
+        .button-comprar:hover {
+            transform: scale(1.05);
+        }
+
+        .button-carrinho {
+            background-color: #071E41;
+            border: none;
+            padding: 12px 24px;
+            color: #F2F2F2;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .button-carrinho:hover {
+            transform: scale(1.05);
+        }
 
         .card {
             width: max-content;
@@ -46,22 +118,22 @@
 
 <body>
     <div class="container">
-        <div class="container text-center">
+        <div class="container-text-center">
             <div class="row">
                 <div class="col">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{produto.imagem}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem2}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem2}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem3}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem3}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem4}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem4}}" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -77,18 +149,21 @@
                     </div>
 
                 </div>
-                <div class="col dados-produto">
+                <div class="col-dados-produto">
+                    <br>
                     <h2> {{produto.nome}} </h2>
-                    <h3> {{produto.preço}} </h3>
+                    <br>
                     <p> {{produto.descrição}} </p>
-                    <button class="Comprar agora">Comprar agora</button>
-                    <button class="Carrinho"></button>
-                    <i class="bi bi-cart4"></i>
+                    <br>
+                    <h3>R${{produto.preço}}</h3>
+                    <br>
+                    <button class="button-comprar">Comprar agora</button>
+                    <button class="button-carrinho"> 🛒Adicionar ao carrinho</i>
                     </button>
-                    <i class="bi bi-cart4"></i>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <main hidden class="container-nativo">
@@ -128,8 +203,8 @@
             <h3> {{produto.preço}} </h3>
             <p> {{produto.descrição}} </p>
             <button class="Comprar agora">Comprar agora</button>
-            <button class="Carrinho"></button>
-            <i class="bi bi-cart4"></i>
+            <button class="Carrinho">
+                <i class="bi bi-cart4"></i>
             </button>
             <i class="bi bi-cart4"></i>
         </div>
@@ -137,7 +212,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
