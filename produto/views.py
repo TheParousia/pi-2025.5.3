@@ -94,13 +94,13 @@ def atualizarProduto(request, id):
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
-        descrição = request.POST.get('descrição')
-        valor = request.POST.get('valor')
+        descricao = request.POST.get('descrição')
+        preco = request.POST.get('valor')
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto.nome = nome
-        produto.descrição = descrição
-        produto.preço = valor
+        produto.descricao = descricao
+        produto.preco = preco
         produto.quantidade_estoque = quantidade_em_estoque
 
 

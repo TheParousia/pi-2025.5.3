@@ -24,7 +24,7 @@ urlpatterns = [
     path('', vwproduto.listaProdutos, name='home'),
     path('produto/adm',vwproduto.controleEstoque, name= 'adm_ produto'),
     path('produto/deletar/<int:id>',vwproduto.deletarProduto, name= ''),
-    path('produto/atualizar/<int:id>',vwproduto.atualizarProduto, name= ''),
+    path('produto/atualizar/<int:id>',vwproduto.atualizarProduto, name= 'atualizar_produto'),
     path('cadastro/',vwusuario.cadastroCliente, name= 'cadastro_usuario'),
     path('produto/cadastro/', vwproduto.cadastroProduto),
     path('produto/<int:id>', vwproduto.detalheProduto),
