@@ -8,7 +8,7 @@ def verificar_grupo(usuario):
 
 def login(request):   
     if request.method == "POST":
-        login = request.POST.get("login")
+        email = request.POST.get("email")
         senha = request.POST.get("senha")
 
 
@@ -46,4 +46,4 @@ def cadastroCliente(request):
 
         return redirect('home')
     
-    return render(request,'form_cliente.html')
+    return render(request,'form_client.html')

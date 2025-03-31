@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="/static/imagem/perfil/favicon.ico" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'fonte1';
+            src: url(/static/font/FathersDisplayRegular.ttf);
+        }
+
+        /* Defina as variáveis CSS  de cor e font*/
+        :root {
+            --cor-principal: #0432bb70;
+            --cor-secundaria: #11538c96;
+            --cor-terciaria: #D9BB96;
+            --cor-quaternaria: #D9D9D9;
+
+            --fonte-titulo: fonte1;
+            --fonte-principal: Arial, sans-serif;
+        }
+
+        /* Corpo/ fundo da pagina */
+        body {
+            background-color: var(--cor-terciaria);
+            background-image: url(/static/imagem/integrantes/fundo-4.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* configurações da div do titulo */
+        .container {
+            background-color: var(--cor-secundaria);
+            max-width: 1200px;
+            margin: 40px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container a {
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+        }
+
+        /* Configurações do tiitulo */
+        #titulo {
+            font-family: var(--fonte-titulo);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 7em;
+            text-shadow: 2px 2px 4px #ffffff,
+                -2px -2px 4px #f5f5f8;
+            border-right: 4px solid #fbfcfc;
+            width: 16ch;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: blink 5s infinite, typing 5s infinite steps(16);
+        }
+
+        /* Cor do titulo */
+        #titulo span {
+            color: black;
+        }
+
+        /* Animação do texto 'titulo' */
+        @keyframes blink {
+            50% {
+                border-right-color: transparent;
+            }
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            40% {
+                width: 16ch;
+            }
+
+            60% {
+                width: 16ch;
+            }
+
+            100% {
+                width: 0;
+            }
+        }
+
+        /* Divisoria de cada content */
+        .main {
+            background-color: var(--cor-secundaria);
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 2px 2px 5px 2px rgba(255, 255, 255, 0.452);
+        }
+
+        /*Container que fica a imagem, o texto e o botão dentro */
+        .content {
+            background-color: rgba(252, 250, 248, 0.466);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        /* tamanho da imagem, distancia da parede */
+        .imagem {
+            width: 250px;
+            height: 250px;
+            margin-right: 20px;
+            border-radius: 50%;
+            padding-left: 10px;
+
+        }
+
+        /* Distancia do texto para o  botão */
+        .descricao {
+            flex: 1;
+            margin-top: 20px;
+        }
+
+        /* Descrição do texto, "Frase motivacional" */
+        .descricao p {
+            text-align: justify;
+            margin-bottom: 20px;
+            padding-right: 15px;
+            cursor: default;
+
+        }
+
+        /* Animação que era do botão */
+        @keyframes piscar {
+            0% {
+                opacity: 1;
+            }
+
+            25% {
+                opacity: 0.5;
+                text-shadow: 2px 2px 5px rgb(255, 255, 255);
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+                text-shadow: 2px 2px 5px rgb(236, 222, 25), -2px -2px 5px rgb(255, 2, 2);
+            }
+        }
+
+        .top {
+            max-width: 1500px;
+            display: flex;
+            justify-content: right;
+        }
+
+        .top a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Configurações do botão */
+        .social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            margin-top: 5px;
+            background-color: var(--cor-principal);
+            border: 1px solid var(--cor-secundaria);
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px var(--cor-principal);
+            grid-column: 1 / -1;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer p {
+            color: white;
+        }
+
+        .social img {
+            width: 50px;
+            cursor: pointer;
+        }
+
+        .social img:hover {
+            transition: rotation 50%;
+        }
+    </style>
+
+<body>
+    <header class="container">
+        <h1 id="titulo"><span>Equide de Dev's</span></h1>
+        <a class="bi bi-back" href="{% url 'sobre_nos' %}"> - Voltar</a>
+    </header>
+    <main>
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/henrique.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Henrique Diomedes</h2>
+                    <p><strong>
+                            Não importa a direção do primeiro passo, lembre-se, e sempre o proximo que vai que vai
+                            definir o seu futuro.
+                        </strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/ana.santos.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Ana Santos</h2>
+                    <p><strong> Quando pensarem que voçês não vão conseguir ou pensarem que outra pessoa é melhor, em
+                            vez de voçês largarem tudo e dizer que não conseguem, pesistam e tentem até o último
+                            momento. A vida é uma pura aventura feita para ser vivida, então viva como se o ontem não
+                            importasse, porque de fato ele não importa, quando você seguir os seus próprios
+                            sonhos.</strong></s> </p>
+
+                </article>
+            </article>
+        </section>
+
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/guilherme.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Guilherme Oliveira</h2>
+                    <p><strong>"Acredite em si mesmo, pois você é capaz de realizar coisas incríveis. Não desista dos
+                            seus sonhos, pois cada passo que você dá os aproxima mais da realidade."</strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/maria.png" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Maria Oliveira</h2>
+                    <p><strong>
+                            " Acredite, conquiste, deseje, espere, alcance. Seja tudo o quiser ser, mas, acima de tudo,
+                            seja você. Lute com determinação, abrace a vida com paixão, perca com classe e vença com
+                            ousadia, porque o mundo pertence a quem se atreve e a vida é muito para ser insignificante."
+
+                        </strong></p>
+
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/gustavo.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Gustavo Carvalho</h2>
+                    <p><strong>
+                            "Preocupado com uma única folha, você não verá a árvore. Preocupado com uma única árvore
+                            você não perceberá toda a floresta. Não se preocupe com um único ponto. Veja tudo em sua
+                            plenitude sem se esforçar."
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/alana.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Alana Oliveira</h2>
+                    <p><strong>
+                        "Não espere pelo momento perfeito, pois ele pode nunca chegar. Comece agora, com o que você
+                        tem, e vá em frente. O sucesso não é um destino, é uma jornada, e cada passo que você dá é
+                        um passo em direção ao seu sonho."
+
+                        </strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/vitoria.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Vitoria Marciel</h2>
+                    <p><strong>
+                            "Não espere pelo momento perfeito, pois ele pode nunca chegar. Comece agora, com o que você
+                            tem, e vá em frente. O sucesso não é um destino, é uma jornada, e cada passo que você dá é
+                            um passo em direção ao seu sonho."
+
+                        </strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/bianca.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Bianca Batista</h2>
+                    <p><strong>
+                            Sua determinação é sua maior força
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/larry.jpeg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Larry Crys</h2>
+                    <p><strong>
+                            O relógio de Deus nunca se atrasa. No seu tempo, tudo irá se cumprir. Não esteja ansioso ou
+                            preocupado. Deus te honrará. Amém!
+                        </strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/roberta.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Roberta Soares</h2>
+                    <p><strong>É importante agradecer pelo hoje sem nunca desistir do amanhã</strong></s></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/jamilly.jpg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Jamilly Oliveira</h2>
+                    <p><strong>
+                            A persistência é o caminho do êxito.
+                        </strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <section class="main">
+            <article class="content">
+                <img src="/static/imagem/perfil/Taylor.jpeg" alt="Imagem de Exemplo" class="imagem">
+                <article class="descricao">
+                    <h2>Taylor Pinheiro</h2>
+                    <p><strong>
+                            "Acredite em si mesmo, pois você é capaz de realizar coisas incríveis. Não deixe que o medo
+                            ou a dúvida o impeçam de alcançar seus sonhos. Lembre-se de que cada passo que você dá em
+                            direção ao seu objetivo é um passo em direção ao sucesso."
+
+
+                        </strong></p>
+
+                </article>
+            </article>
+        </section>
+
+        <div class="top"><a class="bi bi-arrow-up-square" href="{% url 'dev' %}"> Home</a></div>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="social">
+            <a href="" target="_blank"><img src="/static/imagem/integrantes/icon/Instagram_Box_Filled_L@0.2x.png"
+                    alt="Instagra"></a>
+            <a href="" target="_blank"><img
+                    src="/static/imagem/integrantes/icon/Reddit_Box_Filled_L Shadowless@0.2x.png" alt="Reddit"></a>
+            <a href="" target="_blank"><img src="/static/imagem/integrantes/icon/Linkedin_Filled_L Shadowless@0.2x.png"
+                    alt="Linkedin"></a>
+        </div>
+        <p>&copy; 2025 Equipe de Desenvolvimento SENAC-CASTANHAL-PA</p>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

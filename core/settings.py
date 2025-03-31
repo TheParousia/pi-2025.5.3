@@ -36,8 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pag_teste',
+    'info',
     'usuario',
     'produto',
+    'venda',
+    'exemplo',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pi_2025_5_3',
-        'USER':'programador',
-        'PASSWORD':'qwer1234',
-        'HOST':'192.168.30.194',
-        'PORT':'3306'
+        'USER': 'programador',
+        'PASSWORD': 'qwer1234',
+        'HOST': '192.168.30.194',
+        'PORT': '3306'
     }
 }
 
@@ -122,14 +126,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR,'static'),
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
