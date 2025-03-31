@@ -12,3 +12,10 @@ class Produto(models.Model):
     descrição = models.TextField()
     preço = models.DecimalField(max_digits=15, decimal_places=2)
     quantidade_estoque = models.IntegerField()
+
+
+
+class Estoque(models.Model):
+    productName = models.CharField(max_length=255)
+    productPrice = models.DecimalField (max_digits=10, decimal_places=2)
+    productQtd = models.IntegerField()
