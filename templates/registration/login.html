@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-
+{% extends "base.html" %} 
+{% block title %}Login{% endblock %}
+{% block styles %}
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -83,9 +79,9 @@
       font-family:'Times New Roman', Times, serif
     }
   </style>
-</head>
+  {% endblock %} 
 
-<body>
+  {% block content %}
 
   <div class="container-login">
     <h2>Login</h2>
@@ -116,7 +112,7 @@
         {% endif %} {% endif %}
       </div>
       <br><br>
-      <a href="">Cadastre-se...</a>
+      <a href="{% url 'cadastro_usuario' %}">Cadastre-se...</a>
       <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
       <div class="login">
         <input type="submit" value="login">
@@ -126,14 +122,13 @@
   </div>
 
   <!-- JavaScript -->
+
   <script>
     // window.alert("Seja bem vindo à página de login!");
     function toggleSenha() {
       const senhaInput = document.getElementById('senha');
       const tipo = senhaInput.type === 'password' ? 'text' : 'password';
       senhaInput.type = tipo;
-    }
+    } 
   </script>
-</body>
-
-</html>
+{% endblock %}
