@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto
 
 # Create your views here.
@@ -60,3 +60,58 @@ def cadastroProduto(request):
 
         produto.save()
     return render(request,'form_produto.html')
+
+
+
+def controleEstoque(request):
+    produtos = Produto.objects.all()
+
+    if request.method == 'POST':
+        print("Dados atualizados com sucesso")
+
+        productName = request.POST.get('nome')
+        productPrice = request.POST.get('price')
+        productQtd = request.POST.get('qtd')
+
+        adm = controleEstoque()
+        adm.nome = productName
+        adm.preco = productPrice
+        adm.quantidade = productQtd
+
+        adm.save()
+
+    return render(request, 'adm_produto.html', {'produtos': produtos })
+
+def deletarProduto(request, id):
+    produto = get_object_or_404(Produto, pk=id)
+    produto.delete()
+
+    return redirect('adm_produto')
+
+
+
+def atualizarProduto(request, id):
+    produto = get_object_or_404(Produto, pk=id)
+
+    if request.method == 'POST':
+        print("Dados recebidos com sucesso")
+
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descrição')
+        preco = request.POST.get('valor')
+        quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
+
+        produto.nome = nome
+        produto.descricao = descricao
+        produto.preco = preco
+        produto.quantidade_estoque = quantidade_em_estoque
+
+
+        produto.imagem = request.FILES.get('imagem')
+        produto.imagem2 = request.FILES.get('imagem2')
+        produto.imagem3 = request.FILES.get('imagem3')
+        produto.imagem4 = request.FILES.get('imagem4')
+
+        produto.save()
+
+    return render(request,'atualizar_produto.html', {'produto': produto})

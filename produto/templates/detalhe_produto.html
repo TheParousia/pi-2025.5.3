@@ -18,7 +18,6 @@
             min-height: 100vh;
             margin: 0;
             background-color: #071E41;
-            font-family: system-ui, -apple-system, sans-serif;
         }
 
 
@@ -29,17 +28,22 @@
 
         .col-dados-produto {
             display: flexbox;
-            max-width: 700px;
+            max-width: 600px;
             background-color: #F2F2F2;
             padding-top: 70px;
             border-radius: 15px;
-            margin: 10px;
-            gap: 30px;
+            margin: 20px;
             text-align: center;
+            padding-bottom: 20px;
+            width: 600px;
+            height: 500px;
         }
+
         .carousel-inner{
             border-radius: 20px;
-            margin: 10px;
+            margin: 20px;
+            width: 600px;
+            height: 500px;
         }
 
         h2 {
@@ -52,11 +56,16 @@
             margin-left: 150px;
             padding-left: 100px;
             width: 300px;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: right;
+            padding-bottom: 90px;
         }
 
         p {
             color: #071E41;
             font-weight: 500;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: center;
         }
 
         .button-comprar {
@@ -94,10 +103,6 @@
             width: max-content;
         }
 
-        .carrinho {
-            background-color: 0F528C;
-        }
-
         imagens {
             width: max-content;
             background-color: rgb(175, 175, 214);
@@ -119,16 +124,16 @@
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{produto.imagem}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem2}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem2}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem3}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem3}}" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{produto.imagem4}}" class="d-block w-100" alt="...">
+                                <img src="/{{produto.imagem4}}" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -148,9 +153,9 @@
                     <br>
                     <h2> {{produto.nome}} </h2>
                     <br>
-                    <h3>R${{produto.preço}}</h3>
-                    <br>
                     <p> {{produto.descrição}} </p>
+                    <br>
+                    <h3>R${{produto.preço}}</h3>
                     <br>
                     <button class="button-comprar">Comprar agora</button>
                     <button class="button-carrinho"> 🛒Adicionar ao carrinho</i>
@@ -207,7 +212,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
