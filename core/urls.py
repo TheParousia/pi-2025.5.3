@@ -17,9 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from produto import vwproduto
-from usuario import vwusuario
-from info import vwinfo
+from produto import views as vwproduto
+from usuario import views as vwusuario
+from info import views as vwinfo
 
 urlpatterns = [
     path('', vwproduto.listaProdutos),
