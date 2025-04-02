@@ -16,7 +16,6 @@ def feedback(request):
 def sobreNos(request):
     return render(request, 'sobre_nos.html')
 
-
 def desenvolvedores(request):
     return render(request, 'desenvolvedores.html')
 
