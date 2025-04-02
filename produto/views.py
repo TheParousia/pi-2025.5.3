@@ -44,16 +44,16 @@ def cadastroProduto(request):
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
-        descrição = request.POST.get('descrição')
+        descricao = request.POST.get('descrição')
         valor = request.POST.get('valor')
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto = Produto()
         produto.nome = nome
-        produto.descrição = descrição
-        produto.imagem = request.FILES.get('imagem')
-        produto.preço = valor
+        produto.descricao = descricao
         produto.quantidade_estoque = quantidade_em_estoque
+        produto.preco = valor
+        produto.imagem1 = request.FILES.get('imagem1')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
         produto.imagem4 = request.FILES.get('imagem4')
@@ -97,17 +97,17 @@ def atualizarProduto(request, id):
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
-        descrição = request.POST.get('descrição')
+        descricao = request.POST.get('descrição')
         valor = request.POST.get('valor')
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto.nome = nome
-        produto.descrição = descrição
-        produto.preço = valor
+        produto.descricao = descricao
+        produto.preco = valor
         produto.quantidade_estoque = quantidade_em_estoque
 
 
-        produto.imagem = request.FILES.get('imagem')
+        produto.imagem1 = request.FILES.get('imagem1')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
         produto.imagem4 = request.FILES.get('imagem4')
