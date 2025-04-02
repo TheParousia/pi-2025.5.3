@@ -4,59 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>perfil do cliente</title>
-
-    
-        
 </head>
-<body>
-    <h1>Perfil do Cliente</h1>
-    <div class="container-login">
-    
-    
-        <form action="" method="post">
-           <div class="input-usuario">
-              
-           </div>
-           <div class="input-senha">
-            <div class="container-login">
-                <h2>Dados do Cliente</h2>
-                <form action="" method="post">
-                   <div class="input-usuario">
-                      <label for="login">Login:</label>
-                      <br>
-                      <input type="text" id="email" name="email" required>
-                      <br><br>
-                   </div>
-                   <div class="input-senha">
-                    
-                      <button type="button" class="btn">Alterar senha</button>
-                      
-                   </div>
-                   <br><br>
-                   <label for="nome">Nome:</label>
-                   <br>
-                   <input type="text" id="nome" name="nome" required>
-                   <br><br>
-                   <label for="telefone">Telefone:</label>
-                   <br>
-                   <input type="number" id="telefone" name="telefone" required>
-                   <br><br>
-                   <label for="data_nasc">Data de Nascimento:</label>
-                   <br>
-                   <input type="number" id="data_nasc" name="data de nascimento" required>
-                   <br><br>
-                   <label for="endereço">Endereço:</label>
-                   <br>
-                   <input type="number" id="data_nasc" name="data de nascimento" required>
-                   <br><br>
-                   <label for="Celular">Celular:</label>
-                   <br>
-                   <input type="number" id="celular" name="celular" required>
-                   
-                   <div class="input-Salvar">
-                    <br>
-                    <button type="button" class="btn">Salvar</button>
-                    
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+    .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+   
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
+    form {
+        margin-top: 20px;
+    }
+    
+    .campo {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input, select {
+        width: 50%;
+        height: 40%;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    button [type="submit"] {
+        background-color: #28d1e7;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #33deeb;
+    }
+    
+</style>
+<body>
+    <div class="container">
+        <h1>Perfil do Cliente</h1>
+        <form>
+            <div class="campo">
+                <label for="nome">Nome:</label>
+                <input disabled type="text" id="nome" name="nome">
+            </div>
+            <br>
+            <div class="campo">
+                <label for="email">Email:</label>
+                <input disabled type="text" id="email" name="email">
+            </div>
+                <br>
+            <div class="campo">
+                <label for="telefone">Telefone:</label>
+                <input disabled type="number" id="telefone" name="telefone">
+                
+            </div>
+                <br>
+            <div class="campo">
+                <label for="endereco">Endereco:</label>
+                <input disabled type="text" id="endereco" name="endereco">
+            </div>
+                <br>
+                <div class="campo">
+                    <label for="cep">CEP:</label>
+                    <input disabled type="text" id="cep" name="cep">
+                </div>
+                <button disabled type="submit">Salvar</button>
+                <br>
+            </div>
+            
+        </form>
+    </div>
 </body>
 </html>
+                  
