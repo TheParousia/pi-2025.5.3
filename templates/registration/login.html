@@ -1,134 +1,133 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block styles %}
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-image: linear-gradient(to right, rgb(67, 110, 96), rgb(212, 194, 194));
-    }
-
-    .container-login {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgb(white);
-      padding: auto;
-    }
-
-    h2 {
-      text-align: center;
-      font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: 30px;
-      text-shadow: 1px 1px 1px #000000;
-    }
-
-    .login {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      ;
-    }
-
-    .login input {
-      background-color: rgb(0, 0, 0);
-      color: rgb(255, 255, 255);
-      border: none;
-      border-radius: 10px;
-      padding: 5px 39px 5px 39px;
-      cursor: pointer;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-weight: bold;
-    }
-
-    div {
-      background-color: #ffffff;
-      padding: 10px 10px 10px 10px;
-      border-radius: 20px;
-    }
-
-    .input-usuario {
-      font-weight: bold;
-    }
-
-    .input-usuario input {
-      border-radius: 30px;
-      padding: 5px 5px 5px 5px;
-      font-size: 14px;
-    }
-
-    .input-senha {
-      font-weight: bold;
-    }
-
-    .input-senha input {
-      border-radius: 30px;
-      padding: 5px 5px 5px 5px;
-      font-size: 14px;
-    }
-
-    .input-senha button {
-      border: none;
-      background-color: white;
-      cursor: pointer;
-    }
-
-    a {
-      font-weight: bold;
-      margin: 10px;
-      font-family:'Times New Roman', Times, serif
-    }
-  </style>
-{% endblock %} 
-
-  {% block content %}
-
-  <div class="container-login">
-    <h2>Login</h2>
-
+<style>
   
+  .ctn-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-    <form action="{% url 'login' %}" method="post">
-      {% csrf_token %}
-      <div class="input-usuario">
-        <label for="usuario">Email:</label>
-        <input type="text" id="email" name="username" autocomplete="username" placeholder="Digite seu email" required>
-        <br><br>
-      </div>
-      <div class="input-senha">
-        <label for="password">Senha:</label>
-        <input type="password" id="senha" name="password" placeholder="Digite sua senha" autocomplete="current-password"
-          required>
-        <button type="button" id="olho" onclick="toggleSenha()">👁️</button>
-        {% if form.errors %}
-        <p>Login ou senha inválidos. Tente novamente.</p>
-        {% endif %} {% if next %} {% if user.is_authenticated %}
-        <p>
-          Sua conta não tem acesso a esta página. Para prosseguir, faça login com
-          uma conta que tenha acesso.
-        </p>
-        {% else %}
-        <p>Por favor, faça login para ver esta página.</p>
-        {% endif %} {% endif %}
-      </div>
+    background-color: rgb(white);
+    padding: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(to right, white);
+  }
+
+  h2 {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #000000;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ;
+  }
+
+  .login input {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 39px 5px 39px;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  .div-login  {
+    background-color: #ffffff;
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+  }
+
+  .input-usuario {
+    font-weight: bold;
+  }
+
+  .input-usuario input {
+    border-radius: 30px;
+    padding: 5px 5px 5px 5px;
+    font-size: 14px;
+  }
+
+  .input-senha {
+    font-weight: bold;
+  }
+
+  .input-senha input {
+    border-radius: 30px;
+    padding: 5px 5px 5px 5px;
+    font-size: 14px;
+  }
+
+  .input-senha button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  a {
+    font-weight: bold;
+    margin: 10px;
+    font-family: 'Times New Roman', Times, serif
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="ctn-login">
+  <h2>Login</h2>
+
+
+
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="div-login input-usuario">
+      <label for="usuario">Email:</label>
+      <input type="text" id="email" name="username" autocomplete="username" placeholder="Digite seu email" required>
       <br><br>
-      <a href="{% url 'cadastro_usuario' %}">Cadastre-se...</a>
-      <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
-      <div class="login">
-        <input type="submit" value="login">
-      </div>
-      <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-  </div>
+    </div>
+    <div class="div-login input-senha">
+      <label for="password">Senha:</label>
+      <input type="password" id="senha" name="password" placeholder="Digite sua senha" autocomplete="current-password"
+        required>
+      <button type="button" id="olho" onclick="toggleSenha()">👁️</button>
+      {% if form.errors %}
+      <p>Login ou senha inválidos. Tente novamente.</p>
+      {% endif %} {% if next %} {% if user.is_authenticated %}
+      <p>
+        Sua conta não tem acesso a esta página. Para prosseguir, faça login com
+        uma conta que tenha acesso.
+      </p>
+      {% else %}
+      <p>Por favor, faça login para ver esta página.</p>
+      {% endif %} {% endif %}
+    </div>
+    <br><br>
+    <a href="{% url 'cadastro_usuario' %}">Cadastre-se...</a>
+    <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
+    <div class="login">
+      <input type="submit" value="login">
+    </div>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
 
-  <!-- JavaScript -->
+<!-- JavaScript -->
 
-  <script>
-    // window.alert("Seja bem vindo à página de login!");
-    function toggleSenha() {
-      const senhaInput = document.getElementById('senha');
-      const tipo = senhaInput.type === 'password' ? 'text' : 'password';
-      senhaInput.type = tipo;
-    } 
-  </script>
-  {% endblock %}
+<script>
+  // window.alert("Seja bem vindo à página de login!");
+  function toggleSenha() {
+    const senhaInput = document.getElementById('senha');
+    const tipo = senhaInput.type === 'password' ? 'text' : 'password';
+    senhaInput.type = tipo;
+  } 
+</script>
+{% endblock %}

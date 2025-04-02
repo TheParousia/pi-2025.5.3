@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'pi_2025_5_3',
         'USER': 'programador',
         'PASSWORD': 'qwer1234',
-        'HOST': '192.168.30.194',
+        'HOST': '172.16.0.110',
         'PORT': '3306'
     }
 }
@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

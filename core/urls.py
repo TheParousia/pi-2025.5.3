@@ -22,6 +22,7 @@ from produto.views import listaProdutos, cadastroProduto, detalheProduto
 from venda.views import carrinho
 from usuario.views import cadastroCliente
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 # Rotas de exemplo de código
 from exemplo.views import publico, logado, funcionario
@@ -52,5 +53,7 @@ urlpatterns = [
     path('exemplo/funcionario/', funcionario, name='funcionario'),
 
 ]
+
+
 
 urlpatterns += staticfiles_urlpatterns()
