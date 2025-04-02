@@ -39,6 +39,7 @@ def detalheProduto(request, id):
     produto = get_object_or_404(Produto,pk = id)
     return render (request,"detalhe_produto.html", {"produto":produto})
 
+
 def cadastroProduto(request):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
