@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'pi_2025_5_3',
         'USER': 'programador',
         'PASSWORD': 'qwer1234',
-        'HOST': '192.168.30.194',
+        'HOST': '172.16.0.110',
         'PORT': '3306'
     }
 }

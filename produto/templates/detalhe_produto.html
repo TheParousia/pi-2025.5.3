@@ -3,7 +3,7 @@
 {% block styles %}
 <style>
     body{
-        background-color: #071E41;
+        background-color: #02204d;
 
     }
 
@@ -100,7 +100,6 @@
 
     imagens {
         width: max-content;
-        background-color: rgb(175, 175, 214);
         padding: 10px;
         justify-content: center;
     }
@@ -119,7 +118,7 @@
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/{{produto.imagem}}" class="d-block w-100" alt="...">
+                            <img src="/{{produto.imagem1}}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="/{{produto.imagem2}}" class="d-block w-100" alt="...">
@@ -148,9 +147,9 @@
                 <br>
                 <h2> {{produto.nome}} </h2>
                 <br>
-                <p> {{produto.descrição}} </p>
+                <p> {{produto.descricao}} </p>
                 <br>
-                <h3>R${{produto.preço}}</h3>
+                <h3>R${{produto.preco}}</h3>
                 <br>
                 <button class="button-comprar">Comprar agora</button>
                 <button class="button-carrinho"> 🛒Adicionar ao carrinho</i>
