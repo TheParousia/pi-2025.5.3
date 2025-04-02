@@ -22,11 +22,11 @@ def listaProdutos(request):
         if ordem == '1':
             produtos = Produto.objects.all().order_by('nome')
         elif ordem == '2':
-            produtos = Produto.objects.all().order_by('preço')
+            produtos = Produto.objects.all().order_by('preco')
         elif ordem == '3':
             produtos = Produto.objects.all().order_by('-nome')
         elif ordem == '4':
-            produtos = Produto.objects.all().order_by('-preço')
+            produtos = Produto.objects.all().order_by('-preco')
         #  Member.objects.all().order_by('firstname').values()
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
@@ -41,16 +41,16 @@ def cadastroProduto(request):
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
-        descrição = request.POST.get('descrição')
+        descricao = request.POST.get('descricao')
         valor = request.POST.get('valor')
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto = Produto()
         produto.nome = nome
-        produto.descrição = descrição
-        produto.imagem = request.FILES.get('imagem')
-        produto.preço = valor
+        produto.descricao = descricao
+        produto.preco = valor
         produto.quantidade_estoque = quantidade_em_estoque
+        produto.imagem = request.FILES.get('imagem')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
         produto.imagem4 = request.FILES.get('imagem4')
