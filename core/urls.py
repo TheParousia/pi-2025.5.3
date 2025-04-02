@@ -19,6 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from info.views import sobreNos, desenvolvedores, contatos, faq
 from produto.views import listaProdutos, cadastroProduto, detalheProduto
+from venda.views import carrinho, pagamentoCliente
 from usuario.views import cadastroCliente
 from django.contrib import admin
 
