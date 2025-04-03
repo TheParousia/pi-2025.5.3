@@ -59,6 +59,7 @@ def cadastroProduto(request):
         produto.preco = valor
         produto.quantidade_estoque = quantidade_em_estoque
 
+
         produto.imagem1 = request.FILES.get('imagem1')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
@@ -128,6 +129,10 @@ def atualizarProduto(request, id):
         produto.save()
         print(f"Imagem 1 salva como: {produto.imagem1}")
 
+        produto.imagem1 = request.FILES.get('imagem1')
+        produto.imagem2 = request.FILES.get('imagem2')
+        produto.imagem3 = request.FILES.get('imagem3')
+        produto.imagem4 = request.FILES.get('imagem4')
 
     return render(request, 'atualizar_produto.html', {'produto': produto})
 
