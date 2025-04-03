@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto
 
 # Create your views here.
-
-
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
     valor_min = request.GET.get('valor_min')
@@ -68,6 +66,7 @@ def cadastroProduto(request):
     return render(request, 'form_produto.html')
 
 
+# Controle de Estoque
 def controleEstoque(request):
     produtos = Produto.objects.all()
 
@@ -87,6 +86,11 @@ def controleEstoque(request):
 
     return render(request, 'adm_produto.html', {'produtos': produtos})
 
+# Adm produto
+def admProduto(request):
+    produtos = Produto.objects.all()
+    return render(request, 'adm_produto.html', {'produtos': produtos})
+
 
 def deletarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
@@ -95,6 +99,7 @@ def deletarProduto(request, id):
     return redirect('adm_produto')
 
 
+#Atualizar Produto
 def atualizarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
 
@@ -108,7 +113,7 @@ def atualizarProduto(request, id):
         preco_novo = request.POST.get('preco', None)
         if preco_novo:
             try:
-                produto.preço = float(preco_novo)
+                produto.preco = float(preco_novo)
             except ValueError:
                 pass  # Mantém o valor atual se a conversão falhar
 

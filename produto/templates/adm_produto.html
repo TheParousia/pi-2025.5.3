@@ -17,7 +17,7 @@
 
     .container {
         background-color: rgba(0, 0, 0, 0.548);
-        max-width: 900px;
+        max-width: auto;
         margin: 40px auto;
         padding: 20px;
         border: 1px solid #ddd;
@@ -59,6 +59,19 @@
         text-align: center;
     }
 
+    a{
+        text-decoration: none;
+    }
+
+    #att{
+        background-color: #4CAF50;
+        color: #fff;
+    }
+    
+    #del {
+        background-color: #FF0000;
+        color: #fff;
+    }
 
     .edit-btn,
     .delete-btn {
@@ -68,15 +81,6 @@
         cursor: pointer;
     }
 
-    .edit-btn {
-        background-color: #4CAF50;
-        color: #fff;
-    }
-
-    .delete-btn {
-        background-color: #FF0000;
-        color: #fff;
-    }
 
     .save-btn {
         background-color: #4CAF50;
@@ -124,20 +128,18 @@
                 <tr>
                     <td>{{produto.id}}</td>
                     <td>{{produto.nome}}</td>
-                    <td>{{produto.preço}}</td>
+                    <td>{{produto.preco}}</td>
                     <td>{{produto.quantidade_estoque}}</td>
                     <td>
 
-                        <button class="edit-btn">Atualizar</button>
-                        <button class="delete-btn">Deletar</button>
-                        <a class="delete-btn" href="{% url 'adm_produto' produto.id %}">Deletar</a>
+                        <a id="att" class="delete-btn" href="{% url 'atualizar_produto' produto.id %}">Atualizar</a>
+                        <a id="del" class="delete-btn" href="{% url 'deletar_produto' produto.id %}">Deletar</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <button class="save-btn" type="submit">Salvar</button>
-        <button class="menu-btn" href="{% url 'home' %}">Voltar</button>
 
     </main>
     <script>
