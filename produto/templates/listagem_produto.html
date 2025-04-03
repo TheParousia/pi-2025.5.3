@@ -143,6 +143,7 @@
     </nav>
 
     <div class="container-menu">
+        {% for produto in produtos %}
         <div class="card" style="width: 18rem;">
             <img src="{{produto.imagem1.url}}" class="card-img-top" alt="imagem-produto">
             <div class="card-body">
@@ -153,6 +154,7 @@
                 <a href="#" class="btn btn-primary" style="color: #F2F2F2; background-color: #0F528C; border-color: #0F528C;">Detalhes</a>
             </div>
         </div>
+        {% endfor %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
