@@ -44,6 +44,6 @@ def cadastroCliente(request):
         usuario.last_name = sobrenome
         usuario.save()
 
-        return redirect('home')
+        return redirect('lista_produtos')
     
-    return render(request,'form_client.html')
+    return render(request,'form_cliente.html')
