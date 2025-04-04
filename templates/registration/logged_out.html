@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout</title>
+{% extends "base.html" %} 
+{% block title %}Logout{% endblock %} 
+{% block styles %}
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-image: linear-gradient(to right, #F2F2F2, rgb(33, 148, 100));
         }
     </style>
-</head>
+{% endblock %}
 
-<body>
+{% block content %}
     <p>Deslogado com sucesso!</p>
-    <a href="{% url 'login'%}">Clique aqui para efetuar login.</a>
-
-</body>
-
-</html>
+    <a href="{% url 'login' %}">Clique aqui para efetuar login.</a>
+{% endblock %}

@@ -19,9 +19,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from info.views import sobreNos, desenvolvedores, contatos, faq
 from produto.views import listaProdutos, cadastroProduto, detalheProduto
-from venda.views import carrinho
+from venda.views import carrinho, pagamentoCliente
 from usuario.views import cadastroCliente
+from produto.views import atualizarProduto
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 # Rotas de exemplo de código
 from exemplo.views import publico, logado, funcionario
@@ -31,6 +33,7 @@ urlpatterns = [
     path('', listaProdutos, name='lista_produtos'),
     path('produto/cadastro/', cadastroProduto, name='cadastro_produto'),
     path('produto/<int:id>', detalheProduto, name='detalhe_produto'),
+    path('atualizar/produto/<int:id>', atualizarProduto, name = 'atualizar_produto'),
 
     # App info
     path('info/sobre_nos/', sobreNos, name='sobre_nos'),
@@ -45,6 +48,7 @@ urlpatterns = [
 
     # App venda
     path('carrinho/', carrinho, name='carrinho'),
+    path('pagamento_cliente/', pagamentoCliente, name= 'pagamento_cliente'),
 
     # Teste
     path('exemplo/publico', publico, name='publico'),
@@ -52,5 +56,7 @@ urlpatterns = [
     path('exemplo/funcionario/', funcionario, name='funcionario'),
 
 ]
+
+
 
 urlpatterns += staticfiles_urlpatterns()
