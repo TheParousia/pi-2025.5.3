@@ -4,3 +4,8 @@ from django.shortcuts import render
 def carrinho(request):
     
     return render(request,'carrinho.html')
+
+def pagamentoCliente(request):
+    
+    return render(request,'pagamento_cliente.html')
+
