@@ -44,13 +44,15 @@ def detalheProduto(request, id):
     return render(request, "detalhe_produto.html", {"produto": produto})
 
 
+
 def cadastroProduto(request):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
-        valor = request.POST.get('preco')
+        valor = request.POST.get('valor')
+
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto = Produto()
@@ -58,7 +60,6 @@ def cadastroProduto(request):
         produto.descricao = descricao
         produto.preco = valor
         produto.quantidade_estoque = quantidade_em_estoque
-
 
         produto.imagem1 = request.FILES.get('imagem1')
         produto.imagem2 = request.FILES.get('imagem2')
@@ -102,34 +103,20 @@ def atualizarProduto(request, id):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
-        produto.nome = request.POST.get('nome', produto.nome)
-        produto.descrição = request.POST.get('descrição', produto.descricao)
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descrição')
+        valor = request.POST.get('valor')
+        quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
-        # Converter os valores numéricos para evitar erro de tipo
-        preco_novo = request.POST.get('preco', None)
-        if preco_novo:
-            try:
-                produto.preço = float(preco_novo)
-            except ValueError:
-                pass  # Mantém o valor atual se a conversão falhar
-
-        quantidade_nova = request.POST.get('quantidade_em_estoque', None)
-        if quantidade_nova:
-            try:
-                produto.quantidade_estoque = int(quantidade_nova)
-            except ValueError:
-                pass  # Mantém o valor atual se a conversão falhar
-
-        # Atualiza imagens se forem enviadas
-        for i in range(1, 5):
-            campo_imagem = f'imagem{i}'
-            if campo_imagem in request.FILES:
-                setattr(produto, campo_imagem, request.FILES[campo_imagem])
+        produto.nome = nome
+        produto.descricao = descricao
+        produto.preco = valor
+        produto.quantidade_estoque = quantidade_em_estoque
 
         produto.save()
         print(f"Imagem 1 salva como: {produto.imagem1}")
 
-        produto.imagem1 = request.FILES.get('imagem1')
+        produto.imagem1 = request.FILES.get('imagem')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
         produto.imagem4 = request.FILES.get('imagem4')
