@@ -5,12 +5,12 @@ from django.db import models
 class Produto(models.Model):
     nome = models.CharField(max_length = 100, unique=True)
     
-    imagem = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
+    imagem1 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem2 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem3 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem4 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
-    descrição = models.TextField()
-    preço = models.DecimalField(max_digits=15, decimal_places=2)
+    descricao = models.TextField()
+    preco = models.DecimalField(max_digits=15, decimal_places=2)
     quantidade_estoque = models.IntegerField()
 
 
