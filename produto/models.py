@@ -8,10 +8,13 @@ class Produto(models.Model):
     descricao = models.TextField()
     preco = models.DecimalField(max_digits=15, decimal_places=2)
 
+
     imagem1 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem2 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem3 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
     imagem4 = models.ImageField(upload_to='static/imagem/produtos/', null=True, blank=True)
+
+
 class Estoque(models.Model):
     productName = models.CharField(max_length=255)
     productPrice = models.DecimalField (max_digits=10, decimal_places=2)
