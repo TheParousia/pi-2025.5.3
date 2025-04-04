@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            max-width: 400px;
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            align-items: center;
+        }
+
+        label,
+        input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+        .payment-form{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Fomúlario de Cliente</h2>
+                <form action="" method="post">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" maxlength="100" required>
+            <br>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+            <br>
+
+            <h3>Endereço</h3>
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" name="cep" maxlength="9" required>
+            <br>
+            <label for="rua">Rua:</label>
+            <input type="text" id="rua" name="rua" required>
+            <br>
+            <label for="numero"> Número:</label>
+            <input type="text" id="numero" name="numero" required>
+            <br>
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required>
+            <br>
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado" required>
+            <br>
+
+            <h1>Escolha a forma de pagamento</h1>
+
+            <!-- Dropdown para escolher o método de pagamento -->
+            <select id="payment-method" onchange="showForm()">
+                <option value="">Selecione...</option>
+                <option value="credit-card">Cartão de Crédito</option>
+                <option value="boleto">Boleto</option>
+                <option value="pix">PIX</option>
+            </select>
+             <!-- Botão de envio do formulário principal -->
+             <button type="submit">Enviar Dados do Cliente</button>
+        </form>
+
+        <!-- Formulários para cada tipo de pagamento -->
+        <div id="credit-card-form" class="payment-form">
+            <h2>Pagamento com Cartão de Crédito</h2>
+            <form>
+                <label for="card-number">Número do Cartão:</label>
+                <input type="text" id="card-number" name="card-number" required><br><br>
+
+                <label for="card-holder">Nome no Cartão:</label>
+                <input type="text" id="card-holder" name="card-holder" required><br><br>
+
+                <label for="expiry-date">Data de Validade:</label>
+                <input type="month" id="expiry-date" name="expiry-date" required><br><br>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required><br><br>
+
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+
+        <div id="boleto-form" class="payment-form">
+            <h2>Pagamento com Boleto</h2>
+            <form>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required><br><br>
+
+                <button type="submit">Emitir Boleto</button>
+            </form>
+        </div>
+
+        <div id="pix-form" class="payment-form">
+            <h2>Pagamento com PIX</h2>
+            <form>
+                <label for="chave-pix">Chave PIX:</label>
+                <input type="text" id="chave-pix" name="chave-pix" required><br><br>
+
+                <button type="submit">Pagar com PIX</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        function showForm() {
+            const paymentMethod = document.getElementById("payment-method").value;
+            const forms = document.querySelectorAll(".payment-form");
+
+            // Ocultar todos os formulários
+            forms.forEach(form => form.style.display = "none");
+
+            // Exibir o formulário correspondente ao método de pagamento escolhido
+            if (paymentMethod) {
+                document.getElementById(`${paymentMethod}-form`).style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>

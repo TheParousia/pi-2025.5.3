@@ -23,6 +23,7 @@ from venda.views import carrinho
 from usuario.views import cadastroCliente
 from produto.views import atualizarProduto
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 # Rotas de exemplo de código
 from exemplo.views import publico, logado, funcionario
@@ -53,6 +54,7 @@ urlpatterns = [
 
     # App venda
     path('carrinho/', carrinho, name='carrinho'),
+    path('pagamento_cliente/', pagamentoCliente, name= 'pagamento_cliente'),
 
     # Teste
     path('exemplo/publico', publico, name='publico'),
@@ -60,5 +62,7 @@ urlpatterns = [
     path('exemplo/funcionario/', funcionario, name='funcionario'),
 
 ]
+
+
 
 urlpatterns += staticfiles_urlpatterns()

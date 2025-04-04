@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'usuario',
     'produto',
     'venda',
-    'exemplo',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pi_2025_5_3',
-        'USER': 'programador',
-        'PASSWORD': 'qwer1234',
-        'HOST': '172.16.0.110',
-        'PORT': '3306'
+        'USER':'programador',
+        'PASSWORD':'qwer1234',
+        'HOST':'172.16.0.110',
+        'PORT':'3306'
     }
 }
 
@@ -134,8 +134,11 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
