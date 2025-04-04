@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from decimal import Decimal, InvalidOperation
+
 from .models import Produto
 
 # Create your views here.
-
-
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
     valor_min = request.GET.get('valor_min')
@@ -18,7 +18,7 @@ def listaProdutos(request):
         produtos = Produto.objects.filter(nome__icontains=nome_produto)
 
     if valor_min and valor_max:
-        produtos = Produto.objects.filter(preço__range=(valor_min, valor_max))
+        produtos = Produto.objects.filter(preco__range=(valor_min, valor_max))
 
     if ordem:
         if ordem == '1':
@@ -44,13 +44,15 @@ def detalheProduto(request, id):
     return render(request, "detalhe_produto.html", {"produto": produto})
 
 
+
 def cadastroProduto(request):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
-        valor = request.POST.get('preco')
+        valor = request.POST.get('valor')
+
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto = Produto()
@@ -68,6 +70,7 @@ def cadastroProduto(request):
     return render(request, 'form_produto.html')
 
 
+# Controle de Estoque
 def controleEstoque(request):
     produtos = Produto.objects.all()
 
@@ -87,6 +90,11 @@ def controleEstoque(request):
 
     return render(request, 'adm_produto.html', {'produtos': produtos})
 
+# Adm produto
+def admProduto(request):
+    produtos = Produto.objects.all()
+    return render(request, 'adm_produto.html', {'produtos': produtos})
+
 
 def deletarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
@@ -95,39 +103,45 @@ def deletarProduto(request, id):
     return redirect('adm_produto')
 
 
+# atualizar produto (tela de atualização dos dados do produto)
 def atualizarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
 
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
-        produto.nome = request.POST.get('nome', produto.nome)
-        produto.descrição = request.POST.get('descrição', produto.descricao)
+        produto.nome = request.POST.get("nome") or produto.nome
+        produto.descricao = request.POST.get("descricao") or produto.descricao
 
         # Converter os valores numéricos para evitar erro de tipo
-        preco_novo = request.POST.get('preco', None)
-        if preco_novo:
+        preco = request.POST.get('preco')
+        if preco:
             try:
-                produto.preço = float(preco_novo)
-            except ValueError:
-                pass  # Mantém o valor atual se a conversão falhar
-
-        quantidade_nova = request.POST.get('quantidade_em_estoque', None)
-        if quantidade_nova:
+                preco = preco.replace(',','.')
+                produto.preco = Decimal(preco)
+            except InvalidOperation:
+                return HttpResponse("Erro: O preço deve ser um número válido.", status=400)
+        
+        
+        # Atualiza a quantidade
+        quantidade= request.POST.get('quantidade_estoque')
+        if quantidade:
             try:
-                produto.quantidade_estoque = int(quantidade_nova)
+                produto.quantidade_estoque = int(quantidade)
             except ValueError:
-                pass  # Mantém o valor atual se a conversão falhar
+                return HttpResponse("Erro: A quantidade deve ser um número inteiro.", status=400)
 
-        # Atualiza imagens se forem enviadas
-        for i in range(1, 5):
-            campo_imagem = f'imagem{i}'
-            if campo_imagem in request.FILES:
-                setattr(produto, campo_imagem, request.FILES[campo_imagem])
-
+        # Atualiza as imagens se forem enviadas
+        if 'imagem1' in request.FILES:
+            produto.imagem1 = request.FILES['imagem1']
+        if 'imagem2' in request.FILES:
+            produto.imagem2 = request.FILES['imagem2']
+        if 'imagem3' in request.FILES:
+            produto.imagem3 = request.FILES['imagem3']
+        if 'imagem4' in request.FILES:
+            produto.imagem4 = request.FILES['imagem4']
         produto.save()
-        print(f"Imagem 1 salva como: {produto.imagem1}")
-
 
     return render(request, 'atualizar_produto.html', {'produto': produto})
+
 
