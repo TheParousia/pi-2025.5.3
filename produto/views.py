@@ -18,7 +18,7 @@ def listaProdutos(request):
         produtos = Produto.objects.filter(nome__icontains=nome_produto)
 
     if valor_min and valor_max:
-        produtos = Produto.objects.filter(preço__range=(valor_min, valor_max))
+        produtos = Produto.objects.filter(preco__range=(valor_min, valor_max))
 
     if ordem:
         if ordem == '1':
