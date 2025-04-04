@@ -47,16 +47,6 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
-        h3 {
-            color: #071E41;
-            margin-left: 150px;
-            padding-left: 100px;
-            width: 300px;
-            font-family: 'Times New Roman', Times, serif;
-            text-align: right;
-            padding-bottom: 90px;
-        }
-
         p {
             color: #071E41;
             font-weight: 500;
@@ -93,6 +83,10 @@
 
         .button-carrinho:hover {
             transform: scale(1.05);
+        }
+
+        .text{
+            align-items: center;
         }
 
         .card {
@@ -148,11 +142,13 @@
                 </div>
                 <div class="col-dados-produto">
                     <br>
-                    <h2> {{produto.nome}} </h2>
-                    <br>
-                    <p> {{produto.descricao}} </p>
-                    <br>
-                    <h3>R${{produto.preco}}</h3>
+                    <div class="texto">
+                        <h2> {{produto.nome}} </h2>
+                        <br>
+                        <p> {{produto.descricao}} </p>
+                        <br>
+                        <h2>R${{produto.preco}}</h2>
+                    </div>
                     <br>
                     <button class="button-comprar">Comprar agora</button>
                     <button class="button-carrinho"> 🛒Adicionar ao carrinho</i>
