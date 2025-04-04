@@ -96,18 +96,18 @@
     </nav>
 
     <div class="container-menu">
-        {%for produto in produtos%}
+        {% for produto in produtos %}
         <div class="card" style="width: 18rem;">
-            <img src="{{produto.imagem.url}}" class="card-img-top" alt="imagem-produto">
+            <img src="{{produto.imagem1.url}}" class="card-img-top" alt="imagem-produto">
             <div class="card-body">
                 <h5 class="card-text">{{produto.nome}}</h5>
                 <p class="card-text">{{produto.descricao}}</p>
-                <p class="card-text">R$ {{produto.preço}}</p>
+                <p class="card-text">R$ {{produto.preco}}</p>
                 <p class="card-text">Estoque: {{produto.quantidade_estoque}}</p>
-                <a href="#" class="btn btn-primary" style="color: #F2F2F2; background-color: #0F528C; border-color: #0F528C;">Detalhes</a>
+                <a href="{% url 'detalhe_produto' produto.id %}" class="btn btn-primary" style="color: #F2F2F2; background-color: #0F528C; border-color: #0F528C;">Detalhes</a>
             </div>
         </div>
-        {%endfor%}
+        {% endfor %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

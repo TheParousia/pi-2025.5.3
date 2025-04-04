@@ -2,19 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto
 
 # Create your views here.
+
+
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
     valor_min = request.GET.get('valor_min')
     valor_max = request.GET.get('valor_max')
     ordem = request.GET.get('ordem')
-    
+
     print("Produto pesquisado: ", nome_produto)
-    
+
     produtos = Produto.objects.all()
-    
+
     if nome_produto:
         produtos = Produto.objects.filter(nome__icontains=nome_produto)
-    
+
     if valor_min and valor_max:
         produtos = Produto.objects.filter(preço__range=(valor_min, valor_max))
 
@@ -22,45 +24,49 @@ def listaProdutos(request):
         if ordem == '1':
             produtos = Produto.objects.all().order_by('nome')
         elif ordem == '2':
-            produtos = Produto.objects.all().order_by('preço')
+            produtos = Produto.objects.all().order_by('preco')
         elif ordem == '3':
             produtos = Produto.objects.all().order_by('-nome')
         elif ordem == '4':
-            produtos = Produto.objects.all().order_by('-preço')
+            produtos = Produto.objects.all().order_by('-preco')
         #  Member.objects.all().order_by('firstname').values()
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
 
+
 def page(request):
-    return render(request,'page.html')
+    return render(request, 'page.html')
+
 
 def detalheProduto(request, id):
     print(id)
-    produto = get_object_or_404(Produto,pk = id)
-    return render (request,"detalhe_produto.html", {"produto":produto})
+    produto = get_object_or_404(Produto, pk=id)
+    return render(request, "detalhe_produto.html", {"produto": produto})
+
 
 def cadastroProduto(request):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
-        descrição = request.POST.get('descrição')
-        valor = request.POST.get('valor')
+        descricao = request.POST.get('descricao')
+        valor = request.POST.get('preco')
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto = Produto()
         produto.nome = nome
-        produto.descrição = descrição
-        produto.imagem = request.FILES.get('imagem')
-        produto.preço = valor
+        produto.descricao = descricao
+        produto.preco = valor
         produto.quantidade_estoque = quantidade_em_estoque
+
+
+        produto.imagem1 = request.FILES.get('imagem1')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
         produto.imagem4 = request.FILES.get('imagem4')
 
         produto.save()
-    return render(request,'form_produto.html')
-
+    return render(request, 'form_produto.html')
 
 
 def controleEstoque(request):
@@ -80,7 +86,8 @@ def controleEstoque(request):
 
         adm.save()
 
-    return render(request, 'adm_produto.html', {'produtos': produtos })
+    return render(request, 'adm_produto.html', {'produtos': produtos})
+
 
 def deletarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
@@ -89,29 +96,43 @@ def deletarProduto(request, id):
     return redirect('adm_produto')
 
 
-
 def atualizarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
 
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
-        nome = request.POST.get('nome')
-        descrição = request.POST.get('descrição')
-        valor = request.POST.get('valor')
-        quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
+        produto.nome = request.POST.get('nome', produto.nome)
+        produto.descrição = request.POST.get('descrição', produto.descricao)
 
-        produto.nome = nome
-        produto.descrição = descrição
-        produto.preço = valor
-        produto.quantidade_estoque = quantidade_em_estoque
+        # Converter os valores numéricos para evitar erro de tipo
+        preco_novo = request.POST.get('preco', None)
+        if preco_novo:
+            try:
+                produto.preço = float(preco_novo)
+            except ValueError:
+                pass  # Mantém o valor atual se a conversão falhar
 
+        quantidade_nova = request.POST.get('quantidade_em_estoque', None)
+        if quantidade_nova:
+            try:
+                produto.quantidade_estoque = int(quantidade_nova)
+            except ValueError:
+                pass  # Mantém o valor atual se a conversão falhar
 
-        produto.imagem = request.FILES.get('imagem')
+        # Atualiza imagens se forem enviadas
+        for i in range(1, 5):
+            campo_imagem = f'imagem{i}'
+            if campo_imagem in request.FILES:
+                setattr(produto, campo_imagem, request.FILES[campo_imagem])
+
+        produto.save()
+        print(f"Imagem 1 salva como: {produto.imagem1}")
+
+        produto.imagem1 = request.FILES.get('imagem1')
         produto.imagem2 = request.FILES.get('imagem2')
         produto.imagem3 = request.FILES.get('imagem3')
         produto.imagem4 = request.FILES.get('imagem4')
 
-        produto.save()
+    return render(request, 'atualizar_produto.html', {'produto': produto})
 
-    return render(request,'atualizar_produto.html', {'produto': produto})
