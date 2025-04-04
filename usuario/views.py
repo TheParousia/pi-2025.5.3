@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import Cliente
 
 # Create your views here.
 def verificar_grupo(usuario):
@@ -43,6 +44,12 @@ def cadastroCliente(request):
         usuario.first_name = nome
         usuario.last_name = sobrenome
         usuario.save()
+
+        cliente = Cliente()
+        cliente.idUsuario = usuario
+        cliente.cpf = request.POST.get('cpf')
+        cliente.dataDeNascimento = request.POST.get('dataDeNascimento')
+        cliente.save()
 
         return redirect('home')
     

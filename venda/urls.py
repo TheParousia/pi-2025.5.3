@@ -1,6 +1,8 @@
 from django.urls import path
 from venda import views
+from .views import AdicionarAoCarrinho
 
 urlpatterns = [
-    path('carrinho/', views.carrinho),
+    path('', views.carrinho),
+    path('api/adicionar/', AdicionarAoCarrinho.as_view(), name='adicionar_carrinho'),
 ]

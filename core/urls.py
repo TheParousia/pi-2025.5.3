@@ -26,7 +26,7 @@ urlpatterns = [
     path('produto/cadastro/', vwproduto.cadastroProduto),
     path('produto/<int:id>', vwproduto.detalheProduto),
   
-    path('', include('venda.urls')),
+    path('carrinho/', include('venda.urls')),
   
     path('sobre_nos/',vwinfo.sobreNos, name='sobre_nos'),
     path('dev/',vwinfo.desenvolvedores, name='dev'),
