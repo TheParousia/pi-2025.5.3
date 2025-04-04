@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from decimal import Decimal, InvalidOperation
+
 from .models import Produto
 
 # Create your views here.
-
-
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
     valor_min = request.GET.get('valor_min')
@@ -70,6 +70,7 @@ def cadastroProduto(request):
     return render(request, 'form_produto.html')
 
 
+# Controle de Estoque
 def controleEstoque(request):
     produtos = Produto.objects.all()
 
@@ -89,6 +90,11 @@ def controleEstoque(request):
 
     return render(request, 'adm_produto.html', {'produtos': produtos})
 
+# Adm produto
+def admProduto(request):
+    produtos = Produto.objects.all()
+    return render(request, 'adm_produto.html', {'produtos': produtos})
+
 
 def deletarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
@@ -97,29 +103,45 @@ def deletarProduto(request, id):
     return redirect('adm_produto')
 
 
+# atualizar produto (tela de atualização dos dados do produto)
 def atualizarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
 
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
-        nome = request.POST.get('nome')
-        descricao = request.POST.get('descrição')
-        valor = request.POST.get('valor')
-        quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
+        produto.nome = request.POST.get("nome") or produto.nome
+        produto.descricao = request.POST.get("descricao") or produto.descricao
 
-        produto.nome = nome
-        produto.descricao = descricao
-        produto.preco = valor
-        produto.quantidade_estoque = quantidade_em_estoque
+        # Converter os valores numéricos para evitar erro de tipo
+        preco = request.POST.get('preco')
+        if preco:
+            try:
+                preco = preco.replace(',','.')
+                produto.preco = Decimal(preco)
+            except InvalidOperation:
+                return HttpResponse("Erro: O preço deve ser um número válido.", status=400)
+        
+        
+        # Atualiza a quantidade
+        quantidade= request.POST.get('quantidade_estoque')
+        if quantidade:
+            try:
+                produto.quantidade_estoque = int(quantidade)
+            except ValueError:
+                return HttpResponse("Erro: A quantidade deve ser um número inteiro.", status=400)
 
+        # Atualiza as imagens se forem enviadas
+        if 'imagem1' in request.FILES:
+            produto.imagem1 = request.FILES['imagem1']
+        if 'imagem2' in request.FILES:
+            produto.imagem2 = request.FILES['imagem2']
+        if 'imagem3' in request.FILES:
+            produto.imagem3 = request.FILES['imagem3']
+        if 'imagem4' in request.FILES:
+            produto.imagem4 = request.FILES['imagem4']
         produto.save()
-        print(f"Imagem 1 salva como: {produto.imagem1}")
-
-        produto.imagem1 = request.FILES.get('imagem')
-        produto.imagem2 = request.FILES.get('imagem2')
-        produto.imagem3 = request.FILES.get('imagem3')
-        produto.imagem4 = request.FILES.get('imagem4')
 
     return render(request, 'atualizar_produto.html', {'produto': produto})
+
 
