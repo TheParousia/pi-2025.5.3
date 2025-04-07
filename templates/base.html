@@ -13,9 +13,15 @@
 
   {% block styles %}
   {% endblock %}
-  
+
 
   <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     .cabecalho {
       background-color: #071E41;
     }
@@ -63,7 +69,7 @@
       padding: 3px 10px;
       background-color: white;
       border-radius: 10px;
-      width: 100%;	
+      width: 100%;
 
     }
 
@@ -88,11 +94,13 @@
     .carrinho {
       color: #F2F2F2;
       margin: 10px;
-      padding: 6px ;
+      padding: 6px;
       font-size: 26px;
     }
 
     .container2 {
+      position: relative;
+      margin-top: auto;
       background-color: #071E41;
       color: #F2F2F2;
     }
@@ -122,6 +130,15 @@
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
               <li><a href="/" class="nav-link px-2 text-secondary" _msttexthash="42250" _msthash="28">Inicio</a></li>
+              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="313612" _msthash="29">Características</a>
+              </li>
+              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="253617" _msthash="30">Precificação</a>
+              </li>
+              <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white" _msttexthash="429065"
+                  _msthash="31">Perguntas
+                  frequentes</a>
+              </li>
+              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="59826" _msthash="32">Sobre</a></li>
             </ul>
           </div>
           <div class="container-pesquisa">
@@ -143,12 +160,12 @@
         </div>
         <div class="col-2 container-login">
 
-          <a href="">
+          <a href="{% url 'login' %}">
             <i class="bi bi-person"></i>
             Login
           </a>
 
-          <a href="">
+          <a href="{% url 'cadastro_usuario' %}">
             <i class="bi bi-file-text"></i>
             Cadastre-se
           </a>
@@ -161,7 +178,7 @@
 
 </div>
 
-<br><br>
+
 {% block content %}
 {% endblock %}<br><br>
 <div class="container2">
@@ -175,7 +192,7 @@
           _msthash="17">Perguntas frequentes</a></li>
       
     </ul>
-    <p class="texto" _msttexthash="269243" _msthash="19">© 2025 Senac, Inc</p>
+    <p class="texto" _msttexthash="269243" _msthash="19">© 2025 Senac, PA Inc</p>
   </footer>
 </div>
 
