@@ -18,7 +18,7 @@ def listaProdutos(request):
         produtos = Produto.objects.filter(nome__icontains=nome_produto)
 
     if valor_min and valor_max:
-        produtos = Produto.objects.filter(preço__range=(valor_min, valor_max))
+        produtos = Produto.objects.filter(preco__range=(valor_min, valor_max))
 
     if ordem:
         if ordem == '1':
@@ -44,13 +44,15 @@ def detalheProduto(request, id):
     return render(request, "detalhe_produto.html", {"produto": produto})
 
 
+
 def cadastroProduto(request):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
 
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
-        valor = request.POST.get('preco')
+        valor = request.POST.get('valor')
+
         quantidade_em_estoque = request.POST.get('quantidade_em_estoque')
 
         produto = Produto()
