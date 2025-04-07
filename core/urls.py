@@ -54,7 +54,7 @@ urlpatterns = [
 
     # App venda
     path('carrinho/', carrinho, name='carrinho'),
-    path('pagamento_cliente/', pagamentoCliente, name= 'pagamento_cliente'),
+    # path('pagamento_cliente/', pagamentoCliente, name= 'pagamento_cliente'),
 
     # Teste
     path('exemplo/publico', publico, name='publico'),

@@ -159,7 +159,25 @@
           </div>
         </div>
         <div class="col-2 container-login">
+          {% if request.user.is_authenticated %}
+          <span style="border: none;background-color: transparent;color: #F2F2F2;">
+            <i class="bi bi-person-circle"></i> {{ request.user.first_name|default:request.user.username }}
+          </span>
+          <!-- <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownUserMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i> {{ request.user.first_name|default:request.user.username }}
+          </button> -->
+          <!-- btn btn-sm btn-danger d-flex align-items-center gap-1 px-2 py-1 -->
 
+          <form method="post" action="{% url 'logout' %}" class="m-0">
+              {% csrf_token %}
+              <button type="submit"
+                  class=""
+                  style="border: none;background-color: transparent;color: #F2F2F2;">
+                  <i class="bi bi-box-arrow-right"></i> Sair
+              </button>
+          </form>         
+          {% else %}
           <a href="{% url 'login' %}">
             <i class="bi bi-person"></i>
             Login
@@ -169,8 +187,7 @@
             <i class="bi bi-file-text"></i>
             Cadastre-se
           </a>
-
-
+          {% endif %}
         </div>
       </div>
     </div>

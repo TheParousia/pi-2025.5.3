@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from decimal import Decimal, InvalidOperation
-
+from django.contrib.auth.decorators import user_passes_test, login_required
 from .models import Produto
 
 # Create your views here.
+def verificar_grupo(usuario):
+    return usuario.groups.filter(name='funcionario').exists()
+
+
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
     valor_min = request.GET.get('valor_min')
@@ -44,7 +48,7 @@ def detalheProduto(request, id):
     return render(request, "detalhe_produto.html", {"produto": produto})
 
 
-
+@user_passes_test(verificar_grupo)
 def cadastroProduto(request):
     if request.method == 'POST':
         print("Dados recebidos com sucesso")
@@ -71,6 +75,7 @@ def cadastroProduto(request):
 
 
 # Controle de Estoque
+@user_passes_test(verificar_grupo)
 def controleEstoque(request):
     produtos = Produto.objects.all()
 
@@ -91,11 +96,12 @@ def controleEstoque(request):
     return render(request, 'adm_produto.html', {'produtos': produtos})
 
 # Adm produto
+@user_passes_test(verificar_grupo)
 def admProduto(request):
     produtos = Produto.objects.all()
     return render(request, 'adm_produto.html', {'produtos': produtos})
 
-
+@user_passes_test(verificar_grupo)
 def deletarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
     produto.delete()
@@ -104,6 +110,8 @@ def deletarProduto(request, id):
 
 
 # atualizar produto (tela de atualização dos dados do produto)
+
+@user_passes_test(verificar_grupo)
 def atualizarProduto(request, id):
     produto = get_object_or_404(Produto, pk=id)
 
@@ -143,5 +151,4 @@ def atualizarProduto(request, id):
         produto.save()
 
     return render(request, 'atualizar_produto.html', {'produto': produto})
-
 
