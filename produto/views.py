@@ -10,30 +10,37 @@ def verificar_grupo(usuario):
 
 def listaProdutos(request):
     nome_produto = request.GET.get('nome_produto')
-    valor_min = request.GET.get('valor_min')
-    valor_max = request.GET.get('valor_max')
-    ordem = request.GET.get('ordem')
+    valor_min = request.GET.get('valor_min', '')
+    valor_max = request.GET.get('valor_max', '')
+    ordem = request.GET.get('ordem', '')
 
-    print("Produto pesquisado: ", nome_produto)
-
+    # Começa com queryset base
     produtos = Produto.objects.all()
 
+    # Aplica filtro de nome
     if nome_produto:
-        produtos = Produto.objects.filter(nome__icontains=nome_produto)
+        produtos = produtos.filter(nome__icontains=nome_produto)
 
+    # Aplica filtro de preço
     if valor_min and valor_max:
-        produtos = Produto.objects.filter(preco__range=(valor_min, valor_max))
+        try:
+            min_val = float(valor_min)
+            max_val = float(valor_max)
+            produtos = produtos.filter(preco__range=(min_val, max_val))
+        except ValueError:
+            # Ignora valores inválidos
+            pass
 
+    # Aplica ordenação
     if ordem:
-        if ordem == '1':
-            produtos = Produto.objects.all().order_by('nome')
-        elif ordem == '2':
-            produtos = Produto.objects.all().order_by('preco')
-        elif ordem == '3':
-            produtos = Produto.objects.all().order_by('-nome')
-        elif ordem == '4':
-            produtos = Produto.objects.all().order_by('-preco')
-        #  Member.objects.all().order_by('firstname').values()
+        if ordem == '1':  # Nome ascendente
+            produtos = produtos.order_by('nome')
+        elif ordem == '2':  # Preço ascendente
+            produtos = produtos.order_by('preco')
+        elif ordem == '3':  # Nome descendente
+            produtos = produtos.order_by('-nome')
+        elif ordem == '4':  # Preço descendente
+            produtos = produtos.order_by('-preco')
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
 
