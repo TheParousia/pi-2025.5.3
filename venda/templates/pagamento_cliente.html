@@ -18,7 +18,7 @@
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 1);
     }
 
     .form-wrapper {
@@ -48,8 +48,6 @@
     }
     label{
         font-weight: bold;
-        width: 150px;
-        text-align: left;
         margin-bottom: 5px;
     }
     
@@ -58,16 +56,11 @@
         padding: 8px;
         border-radius: 5px;
         border: 1px solid #ccc;
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
     }
-
-   input,select{
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 500px;
-    display: inline-block;
-    margin-left: 10px;
-   }
+    
     button{
         background-color: #28a745;
         color: white;
@@ -166,7 +159,7 @@
         </article>
 
         <fieldset>
-            <article id="boleto-form" class="payment-form">
+            <article id="boleto" class="payment-form">
                 <h2>Pagamento com Boleto</h2>
                 <form>
                     <label for="cpf-boleto">CPF:</label>
@@ -177,7 +170,7 @@
         </fieldset>
 
         <fieldset>
-            <article id="pix-form" class="payment-form">
+            <article id="pix" class="payment-form">
                 <h2>Pagamento com PIX</h2>
                 <form>
                     <label for="chave-pix">Chave PIX:</label>
@@ -190,36 +183,43 @@
 
 <script>
     //Função para formatar telefone
-    function formatPhone() {
+    function formatPhone(input) {
         let value = input.value.replace(/\D/g, "");
         if (value.length > 11) value = value.substring(0, 11);
 
         if (value.length > 10) {
             input.value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1)$2-$3");
+        } else if (value.length > 6) {
+            input.value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+        } else if (value.length > 2) {
+            input.value = value.replace(/(\d{2})(\d{0,5})/, "($1) $2");
         } else {
-            input.value = value.replace(/(\d{2})(\d{4})(\d{4})/, "($1)$2-3$");
+            input.value = value;
         }
     }
     //Função para formatar CEP
     function formatCEP(input) {
         let value = input.value.replace(/\D/g, "");
         if (value.length > 8) value = value.substring(0, 8);
-        if (value.length > 5) value = value.substring(0, 5) + "-" + value.substring(5);
+        if (value.length > 5) {value = value.substring(0, 5) + "-" + value.substring(5);
+        }
         input.value = value;
     }
     //Função para formatar CPF
-    function formatCPF() {
+    function formatCPF(input) {
         let value = input.value.replace(/\D/g, "");
-        if (value.length > 11) value.substring(0, 11);
-    }
+        if (value.length > 11) value = value.substring(0, 11);
+    
         if (value.length > 9) {
             input.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
         } else if (value.length > 6) {
             input.value = value.replace(/(\d{3})(\d{3})(\d{3})/, "$1.$2.$3");
         } else if (value.length > 3) {
             input.value = value.replace(/(\d{3})(\d{3})/, "$1.$2");
+        }else {
+            input.value = value;
         }
-
+    }
         // Função para mostrar formulário de pagamento
         function showForm() {
             const paymentMethod = document.querySelector('select').value;
@@ -230,7 +230,10 @@
 
             // Exibe apenas o formulário correspondente ao método escolhido
             if (paymentMethod) {
-                document.getElementById(paymentMethod).style.display = "block";
+                const selectForm =  document.getElementById(paymentMethod);
+                if (selectForm) {
+                    selectForm.style.display = "block";
+                }
             }
         }
         // Função para verificar se o formulário está completo
