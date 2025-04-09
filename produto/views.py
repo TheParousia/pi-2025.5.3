@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto
 
+
+
 # Create your views here.
 
 
@@ -19,7 +21,7 @@ def listaProdutos(request):
 
     if valor_min and valor_max:
         produtos = Produto.objects.filter(preço__range=(valor_min, valor_max))
-
+    
     if ordem:
         if ordem == '1':
             produtos = Produto.objects.all().order_by('nome')
@@ -32,6 +34,7 @@ def listaProdutos(request):
         #  Member.objects.all().order_by('firstname').values()
 
     return render(request, 'listagem_produto.html', {'produtos': produtos})
+   
 
 
 def page(request):
