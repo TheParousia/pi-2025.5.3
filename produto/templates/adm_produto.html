@@ -1,11 +1,10 @@
-
 {% extends "base.html" %}
 {% block title %}Estoque de Produtos{% endblock %}
 
 {% block styles %}
 <style>
     body {
-        background-image: url('/static/img/FundoFormulariosIndex.jpg');
+        /* background-image: url('/static/img/FundoFormulariosIndex.jpg'); */
         background-size: 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -56,15 +55,15 @@
         text-align: center;
     }
 
-    a{
+    a {
         text-decoration: none;
     }
 
-    #att{
+    #att {
         background-color: #4CAF50;
         color: #fff;
     }
-    
+
     #del {
         background-color: #FF0000;
         color: #fff;
@@ -104,58 +103,59 @@
 {% endblock %}
 
 {% block content %}
-   
-        <h1>Administração de Estoque</h1>
-    <main class="container-geral">
-        <h2>Controle de Produtos <a href="{% url 'cadastro_produto' %}" class="btn btn-success">Cadastrar Prduto</a></h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Valor</th>
-                    <th>Quantidade</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="produtos-tbody">
-                <!-- Aqui serão inseridos os produtos dinamicamente -->
-                {% for produto in produtos %}
-                <tr>
-                    <td>{{produto.id}}</td>
-                    <td>{{produto.nome}}</td>
-                    <td>{{produto.preco}}</td>
-                    <td>{{produto.quantidade_estoque}}</td>
-                    <td>
 
-                        <a id="att" class="delete-btn" href="{% url 'atualizar_produto' produto.id %}">Atualizar</a>
-                        <a id="del" class="delete-btn" href="{% url 'deletar_produto' produto.id %}">Deletar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<main class="container-geral">
+    <h2>Controle de Produtos <a href="{% url 'cadastro_produto' %}" class="btn btn-success">Cadastrar Prduto</a></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="produtos-tbody">
+            <!-- Aqui serão inseridos os produtos dinamicamente -->
+            {% for produto in produtos %}
+            <tr>
+                <td>{{produto.id}}</td>
+                <td>{{produto.nome}}</td>
+                <td>{{produto.preco}}</td>
+                <td>{{produto.quantidade_estoque}}</td>
+                <td>
+                    <a id="att" class="delete-btn" href="{% url 'atualizar_produto' produto.id %}">Atualizar</a>
+                    <button id="del" class="delete-btn" onclick="confirmarExclusao('{{ produto.id }}')">
+                        Deletar
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    </main>
-    <script>
-        // Seleciona todos os botões de editar e apagar
-        const editButtons = document.querySelectorAll('.edit-btn');
-        const deleteButtons = document.querySelectorAll('.delete-btn');
+</main>
 
-        // Adiciona evento de clique nos botões de editar
-        editButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Seleciona a linha do produto que foi clicado
-                const productRow = button.parentNode.parentNode;
+<!-- <script>
+    // Seleciona todos os botões de editar e apagar
+    const editButtons = document.querySelectorAll('.edit-btn');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
 
-                // Seleciona os campos de texto da linha do produto
-                const productName = productRow.cells[1].textContent;
-                const productPrice = productRow.cells[2].textContent;
-                const productQtd = productRow.cells[3].textContent;
+    // Adiciona evento de clique nos botões de editar
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Seleciona a linha do produto que foi clicado
+            const productRow = button.parentNode.parentNode;
 
-                // Cria um formulário de edição
-                const editForm = document.createElement('tr');
-                editForm.innerHTML = `
+            // Seleciona os campos de texto da linha do produto
+            const productName = productRow.cells[1].textContent;
+            const productPrice = productRow.cells[2].textContent;
+            const productQtd = productRow.cells[3].textContent;
+
+            // Cria um formulário de edição
+            const editForm = document.createElement('tr');
+            editForm.innerHTML = `
             <td>${productRow.cells[0].textContent}</td>
             <td><input type="text" id="edit-name" value="${productName}"></td>
             <td>R$ <input type="number" step="0.01" id="edit-price" value="${productPrice.replace('R$', '').trim()}"></td>
@@ -167,20 +167,20 @@
             </td>
         `;
 
-                // Substitui a linha do produto pelo formulário de edição
-                productRow.replaceWith(editForm);
+            // Substitui a linha do produto pelo formulário de edição
+            productRow.replaceWith(editForm);
 
-                // Adiciona evento de clique no botão de salvar
-                const saveEditButton = editForm.querySelector('.save-edit-btn');
-                saveEditButton.addEventListener('click', () => {
-                    // Seleciona os valores do formulário de edição
-                    const newName = editForm.querySelector('#edit-name').value;
-                    const newPrice = parseFloat(editForm.querySelector('#edit-price').value).toFixed(2);
-                    const newQtd = editForm.querySelector('#edit-qtd').value;
+            // Adiciona evento de clique no botão de salvar
+            const saveEditButton = editForm.querySelector('.save-edit-btn');
+            saveEditButton.addEventListener('click', () => {
+                // Seleciona os valores do formulário de edição
+                const newName = editForm.querySelector('#edit-name').value;
+                const newPrice = parseFloat(editForm.querySelector('#edit-price').value).toFixed(2);
+                const newQtd = editForm.querySelector('#edit-qtd').value;
 
-                    // Cria uma nova linha do produto com os valores editados
-                    const newRow = document.createElement('tr');
-                    newRow.innerHTML = `
+                // Cria uma nova linha do produto com os valores editados
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
                 <td>${productRow.cells[0].textContent}</td>
                 <td>${newName}</td>
                 <td>R$ ${newPrice}</td>
@@ -192,30 +192,54 @@
                 </td>
             `;
 
-                    // Substitui o formulário de edição pela nova linha do produto
-                    editForm.replaceWith(newRow);
-                });
+                // Substitui o formulário de edição pela nova linha do produto
+                editForm.replaceWith(newRow);
+            });
 
-                // Adiciona evento de clique no botão de cancelar
-                const cancelEditButton = editForm.querySelector('.cancel-edit-btn');
-                cancelEditButton.addEventListener('click', () => {
-                    // Substitui o formulário de edição pela linha original do produto
-                    editForm.replaceWith(productRow);
-                });
+            // Adiciona evento de clique no botão de cancelar
+            const cancelEditButton = editForm.querySelector('.cancel-edit-btn');
+            cancelEditButton.addEventListener('click', () => {
+                // Substitui o formulário de edição pela linha original do produto
+                editForm.replaceWith(productRow);
             });
         });
+    });
 
-        // Adiciona evento de clique nos botões de apagar
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Seleciona a linha do produto que foi clicado
-                const productRow = button.parentNode.parentNode;
+    // Adiciona evento de clique nos botões de apagar
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Seleciona a linha do produto que foi clicado
+            const productRow = button.parentNode.parentNode;
 
-                // Remove a linha do produto
-                productRow.remove();
-            });
+            // Remove a linha do produto
+            productRow.remove();
         });
-    </script>
+    });
+</script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmarExclusao(produtoId) {
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "Você está prestes a excluir esse produto.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e60000',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sim, deletar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `/produto/deletar/${produtoId}/`;
+            }
+        });
+    }
+</script>
 
 {% endblock %}
-</html>
+
