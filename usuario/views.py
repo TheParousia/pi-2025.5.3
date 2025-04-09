@@ -50,9 +50,9 @@ def cadastroCliente(request):
         cliente = Cliente()
         cliente.idUsuario = usuario
         cliente.cpf = request.POST.get('cpf')
-        cliente.dataDeNascimento = request.POST.get('dataDeNascimento')
+        cliente.dataDeNascimento = request.POST.get('data_nascimento')
         cliente.save()
 
-        return redirect('home')
+        return redirect('lista_produtos')
     
     return render(request,'form_cliente.html')
