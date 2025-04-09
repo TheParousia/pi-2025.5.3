@@ -114,6 +114,7 @@
       color: #F2F2F2;
       text-align: center;
     }
+    
   </style>
 </head>
 </body>
@@ -130,15 +131,14 @@
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
               <li><a href="/" class="nav-link px-2 text-secondary" _msttexthash="42250" _msthash="28">Inicio</a></li>
-              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="313612" _msthash="29">Características</a>
+              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="313612" _msthash="29">Categorias</a>
               </li>
-              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="253617" _msthash="30">Precificação</a>
               </li>
               <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white" _msttexthash="429065"
                   _msthash="31">Perguntas
                   frequentes</a>
               </li>
-              <li><a href="#" class="nav-link px-2 text-white" _msttexthash="59826" _msthash="32">Sobre</a></li>
+              <li><a href="{% url 'sobre_nos' %}" class="nav-link px-2 text-white" _msttexthash="59826" _msthash="32">Sobre</a></li>
             </ul>
           </div>
           <div class="container-pesquisa">
@@ -201,8 +201,7 @@
 <div class="container2">
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-
-      <li class="nav-item"><a href="#" class="nav" _msttexthash="42250" _msthash="14">Sobre Nós</a></li>
+      <li class="nav-item"><a href="{% url 'sobre_nos' %}" class="nav" _msttexthash="42250" _msthash="14">Sobre Nós</a></li>
       <li class="nav-item"><a href="#" class="nav" _msttexthash="313612" _msthash="15"></a></li>
       <li class="nav-item"><a href="#" class="nav" _msttexthash="253617" _msthash="16">Precificação</a></li>
       <li class="nav-item"><a href="{% url 'faq' %}" class="nav" _msttexthash="429065" _msthash="17">Perguntas frequentes</a></li>
