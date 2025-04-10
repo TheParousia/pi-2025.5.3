@@ -1,10 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test, login_required
 
-# Create your views here.
-
-# Função para ferificação de grupo de funcionário
-
 
 def verificar_grupo(usuario):
     return usuario.groups.filter(name='funcionario').exists()
